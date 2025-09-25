@@ -161,11 +161,33 @@
             letter-spacing: -0.5px;
             text-decoration: none;
             cursor: pointer;
+            position: relative;
         }
 
         .brand span {
             color: var(--champagne);
             font-weight: 400;
+        }
+
+        .brand-tuo {
+            color: var(--champagne);
+            font-size: 16px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .brand-location {
+            color: var(--champagne);
+            font-size: 12px;
+            font-weight: 500;
+            display: block;
+            margin-top: 2px;
+            text-align: right;
+            font-style: italic;
+            opacity: 0.9;
         }
 
         /* Bottom Navigation */
@@ -1202,13 +1224,239 @@
             <div class="logo-ring"></div>
             <div class="logo-ring"></div>
             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--champagne); font-family: 'Playfair Display', serif; font-size: 32px;">S&V</div>
+            <div class="info-row">
+                <div class="info-icon">⭐</div>
+                <div class="info-text">
+                    <div class="info-label">Recensioni Google</div>
+                    <div class="info-value">
+                        <a href="https://share.google/kKyQCHvheXBI4EgKd" target="_blank" onclick="trackReviewClick('store_info')">
+                            4.8/5 ⭐ Leggi le recensioni
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATALOGO PAGE -->
+    <div id="catalogo-page" class="page">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Catalogo Prodotti</h1>
+                <p class="hero-subtitle">Scopri l'intera collezione Salmoiraghi & Viganò</p>
+            </div>
+        </div>
+
+        <div style="padding: 0 20px; max-width: 800px; margin: 0 auto;">
+            <div style="background: white; border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 40px var(--shadow); text-align: center;">
+                <div style="font-size: 48px; margin-bottom: 20px;">🌟</div>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 16px; color: var(--midnight);">
+                    Scopri tutte le collezioni online
+                </h2>
+                <p style="color: var(--steel); margin-bottom: 30px; line-height: 1.6;">
+                    Naviga il catalogo completo sul sito ufficiale Salmoiraghi & Viganò.<br>
+                    <strong>Vieni poi in negozio per provarli e ricevere la consulenza personalizzata!</strong>
+                </p>
+            </div>
+
+            <div class="services-grid" style="grid-template-columns: 1fr; gap: 20px;">
+                <div class="service-card" onclick="openCatalog('vista')" style="padding: 30px; text-align: left;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2)); padding: 20px; border-radius: 15px; font-size: 32px;">👓</div>
+                        <div style="flex: 1;">
+                            <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; color: var(--midnight);">Occhiali da Vista</h3>
+                            <p style="color: var(--steel); margin-bottom: 15px;">Tutte le montature e i brand più prestigiosi</p>
+                            <p style="font-size: 14px; color: var(--champagne); font-weight: 600;">Sfoglia online → Prova in negozio</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card" onclick="openCatalog('sole')" style="padding: 30px; text-align: left;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2)); padding: 20px; border-radius: 15px; font-size: 32px;">🕶️</div>
+                        <div style="flex: 1;">
+                            <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; color: var(--midnight);">Occhiali da Sole</h3>
+                            <p style="color: var(--steel); margin-bottom: 15px;">Ray-Ban, Oakley, Prada e tutti i top brand</p>
+                            <p style="font-size: 14px; color: var(--champagne); font-weight: 600;">Protezione UV garantita</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card" onclick="openCatalog('lac')" style="padding: 30px; text-align: left;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2)); padding: 20px; border-radius: 15px; font-size: 32px;">👁️</div>
+                        <div style="flex: 1;">
+                            <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; color: var(--midnight);">Lenti a Contatto</h3>
+                            <p style="color: var(--steel); margin-bottom: 15px;">Giornaliere, quindicinali, mensili e colorate</p>
+                            <p style="font-size: 14px; color: var(--champagne); font-weight: 600;">Spedizione gratuita</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card" onclick="openCatalog('accessori')" style="padding: 30px; text-align: left;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2)); padding: 20px; border-radius: 15px; font-size: 32px;">🧽</div>
+                        <div style="flex: 1;">
+                            <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; color: var(--midnight);">Prodotti per la Cura</h3>
+                            <p style="color: var(--steel); margin-bottom: 15px;">Soluzioni, spray, panni e custodie</p>
+                            <p style="font-size: 14px; color: var(--champagne); font-weight: 600;">Manutenzione professionale</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, var(--silk), var(--pearl)); border-radius: 20px; padding: 30px; margin: 30px 0; text-align: center;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 15px; color: var(--midnight);">
+                    ✨ Servizi Esclusivi del negozio di Cesano
+                </h3>
+                <div style="display: grid; gap: 15px; margin-bottom: 25px;">
+                    <div style="display: flex; align-items: center; gap: 12px; justify-content: center;">
+                        <span style="color: var(--champagne);">👁️</span>
+                        <span style="color: var(--steel);">Controllo della vista gratuito</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px; justify-content: center;">
+                        <span style="color: var(--champagne);">🔧</span>
+                        <span style="color: var(--steel);">Regolazione e riparazione montature</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px; justify-content: center;">
+                        <span style="color: var(--champagne);">💎</span>
+                        <span style="color: var(--steel);">Consulenza personalizzata dal team di Cesano</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px; justify-content: center;">
+                        <span style="color: var(--champagne);">🏆</span>
+                        <span style="color: var(--steel);">Garanzia e assistenza post-vendita</span>
+                    </div>
+                </div>
+                <p style="color: var(--midnight); font-weight: 500;">
+                    Quello che trovi online, lo provi e personalizzi nel TUO negozio!
+                </p>
+            </div>
+
+            <!-- Club &Te Upsell -->
+            <div style="background: linear-gradient(135deg, var(--midnight), #1a2c48); color: white; border-radius: 20px; padding: 30px; text-align: center; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -50px; right: -50px; width: 100px; height: 100px; background: rgba(212, 175, 55, 0.1); border-radius: 50%;"></div>
+                
+                <div style="position: relative; z-index: 1;">
+                    <div style="font-size: 48px; margin-bottom: 15px;">💎</div>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 15px;">
+                        Hai visto qualcosa che ti piace?<br>
+                        <span style="color: var(--champagne);">Club &Te</span> è la soluzione!
+                    </h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 25px; font-size: 16px;">
+                        <strong>3 occhiali in 3 anni</strong> da solo 20€/mese<br>
+                        Scegli tutto quello che vuoi dal catalogo online
+                    </p>
+                    
+                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <button class="quick-btn secondary" onclick="navigateTo('clubete')" style="background: var(--champagne); color: var(--midnight);">
+                            📖 Scopri Club &Te Cesano
+                        </button>
+                        <a href="https://wa.me/390245862417?text=Ciao,%20ho%20visto%20alcuni%20occhiali%20che%20mi%20piacciono%20nel%20catalogo.%20Vorrei%20info%20sul%20Club%20%26Te%20a%20Cesano" target="_blank" class="quick-btn secondary" style="background: white; color: var(--midnight);" onclick="trackWhatsAppClick('catalog_club_te')">
+                            💬 Chiedi Info
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIORDINI LAC PAGE -->
+    <div id="riordini-page" class="page">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Riordina le tue <span style="color: var(--champagne);">Lenti a Contatto</span></h1>
+                <p class="hero-subtitle">Veloce, semplice, sempre le stesse che usi</p>
+            </div>
+        </div>
+
+        <div style="padding: 0 20px; max-width: 600px; margin: 0 auto;">
+            <div style="background: white; border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 40px var(--shadow);">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">🔄</div>
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 16px; color: var(--midnight);">
+                        Riordino Veloce
+                    </h2>
+                    <p style="color: var(--steel); line-height: 1.6;">
+                        Usi sempre le stesse lenti a contatto?<br>
+                        Riordinale velocemente tramite WhatsApp!
+                    </p>
+                </div>
+
+                <div style="background: var(--silk); border-radius: 15px; padding: 25px; margin-bottom: 30px;">
+                    <h3 style="color: var(--midnight); margin-bottom: 15px; font-size: 18px;">📦 Come funziona:</h3>
+                    <div style="display: grid; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: var(--champagne); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0;">1</div>
+                            <p style="color: var(--steel); margin: 0;">Clicca "Riordina LAC" qui sotto</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: var(--champagne); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0;">2</div>
+                            <p style="color: var(--steel); margin: 0;">Comunicaci marca, modello e gradazione</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: var(--champagne); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0;">3</div>
+                            <p style="color: var(--steel); margin: 0;">Ti confermiamo disponibilità e prezzo</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: var(--champagne); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0;">4</div>
+                            <p style="color: var(--steel); margin: 0;">Ritira in negozio o ricevi a casa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <a href="https://wa.me/390245862417?text=Ciao%2C%20vorrei%20riordinare%20le%20mie%20lenti%20a%20contatto.%0A%0AMarca%3A%20%0AModello%3A%20%0AGradazione%20OD%3A%20%0AGradazione%20OS%3A%20%0AQuantit%C3%A0%3A%20%0A%0AGrazie%21" target="_blank" class="quick-btn" style="font-size: 16px; padding: 16px 32px; margin-bottom: 20px;" onclick="trackWhatsAppClick('lac_reorder')">
+                        💬 Riordina LAC
+                    </a>
+                </div>
+            </div>
+
+            <div class="services-grid" style="grid-template-columns: 1fr; gap: 15px; margin-bottom: 30px;">
+                <div style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px var(--shadow);">
+                    <h4 style="color: var(--midnight); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                        <span style="color: var(--champagne);">💰</span> Prezzi Vantaggiosi
+                    </h4>
+                    <p style="color: var(--steel); font-size: 14px; margin: 0;">Gli stessi prezzi del negozio, spedizione gratuita sopra i 50€</p>
+                </div>
+
+                <div style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px var(--shadow);">
+                    <h4 style="color: var(--midnight); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                        <span style="color: var(--champagne);">⚡</span> Consegna Veloce
+                    </h4>
+                    <p style="color: var(--steel); font-size: 14px; margin: 0;">Disponibilità immediata per le marche più comuni</p>
+                </div>
+
+                <div style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px var(--shadow);">
+                    <h4 style="color: var(--midnight); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                        <span style="color: var(--champagne);">🛡️</span> Garanzia Qualità
+                    </h4>
+                    <p style="color: var(--steel); font-size: 14px; margin: 0;">Prodotti originali, stessa qualità del negozio</p>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, var(--midnight), #1a2c48); color: white; border-radius: 20px; padding: 30px; text-align: center;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 15px;">
+                    🆕 Prime volte con le LAC?
+                </h3>
+                <p style="margin-bottom: 25px; opacity: 0.9; line-height: 1.5;">
+                    Prenota una consulenza in negozio per la prima applicazione<br>
+                    e impara ad usarle in sicurezza
+                </p>
+                <a href="https://wa.me/390245862417?text=Vorrei%20una%20consulenza%20per%20iniziare%20ad%20usare%20le%20lenti%20a%20contatto" target="_blank" class="quick-btn secondary" style="background: white; color: var(--midnight);" onclick="trackWhatsAppClick('lac_consultation')">
+                    👁️ Prenota Consulenza LAC
+                </a>
+            </div>
         </div>
     </div>
 
     <!-- Header -->
     <header>
         <div class="header-content">
-            <a href="#home" class="brand" onclick="navigateTo('home')">Salmoiraghi <span>&</span> Viganò</a>
+            <a href="#home" class="brand" onclick="navigateTo('home')">
+                <span class="brand-tuo">Il TUO</span>
+                Salmoiraghi <span>&</span> Viganò
+                <span class="brand-location">di Cesano Boscone</span>
+            </a>
         </div>
     </header>
 
@@ -1216,22 +1464,52 @@
     <div id="home-page" class="page active">
         <section class="hero">
             <div class="hero-content">
-                <h1 class="hero-title">La tua vista,<br>la nostra passione</h1>
-                <p class="hero-subtitle">Boutique Cesano Boscone • Le Porte di Milano</p>
+                <h1 class="hero-title">Il TUO Salmoiraghi & Viganò<br><span style="color: var(--champagne);">di Cesano Boscone</span></h1>
+                <p class="hero-subtitle">La tua boutique di fiducia • Le Porte di Milano</p>
                 <div class="quick-actions">
                     <a href="tel:+390245862417" class="quick-btn" onclick="trackPhoneClick('hero')">
-                        📞 Chiama
+                        📞 Chiama Cesano
                     </a>
-                    <a href="https://wa.me/390245862417?text=Salve,%20vorrei%20informazioni%20sui%20vostri%20servizi" target="_blank" class="quick-btn secondary" onclick="trackWhatsAppClick('hero')">
-                        💬 WhatsApp
+                    <a href="https://wa.me/390245862417?text=Ciao,%20scrivo%20dal%20vostro%20sito%20di%20Cesano%20Boscone.%20Vorrei%20informazioni" target="_blank" class="quick-btn secondary" onclick="trackWhatsAppClick('hero')">
+                        💬 Scrivici
                     </a>
                 </div>
             </div>
         </section>
 
+        <!-- Club &Te Highlight -->
+        <div style="background: linear-gradient(135deg, var(--midnight), #1a2c48); color: white; margin: 20px; border-radius: 20px; padding: 30px; text-align: center; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -50px; right: -50px; width: 100px; height: 100px; background: rgba(212, 175, 55, 0.1); border-radius: 50%;"></div>
+            <div style="position: absolute; bottom: -30px; left: -30px; width: 80px; height: 80px; background: rgba(212, 175, 55, 0.1); border-radius: 50%;"></div>
+            
+            <div style="position: relative; z-index: 1;">
+                <div style="font-size: 48px; margin-bottom: 15px;">💎</div>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 15px;">
+                    Club <span style="color: var(--champagne);">&Te</span> Cesano
+                </h2>
+                <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 20px; font-size: 16px;">
+                    <strong>3 occhiali in 3 anni</strong> da solo 20€/mese<br>
+                    Il nostro programma più amato dai clienti di Cesano!
+                </p>
+                
+                <div style="background: var(--champagne); color: var(--midnight); padding: 12px 24px; border-radius: 25px; display: inline-block; margin-bottom: 25px; font-weight: 600; font-size: 16px;">
+                    ⚡ Attivazione immediata in negozio
+                </div>
+                
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <button class="quick-btn secondary" onclick="navigateTo('clubete')" style="background: white; color: var(--midnight);">
+                        📖 Scopri il Club &Te
+                    </button>
+                    <a href="https://wa.me/390245862417?text=Ciao,%20vorrei%20informazioni%20sul%20Club%20%26Te%20nel%20vostro%20negozio%20di%20Cesano%20Boscone" target="_blank" class="quick-btn secondary" style="background: var(--champagne); color: var(--midnight);" onclick="trackWhatsAppClick('club_te_hero')">
+                        💬 Info Club &Te
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="promo-banner">
-            <h2 class="promo-title">🎁 Offerta del Giorno</h2>
-            <p style="margin-bottom: 16px;">Seconda coppia al 50% di sconto!</p>
+            <h2 class="promo-title">🎁 Offerta Esclusiva Cesano</h2>
+            <p style="margin-bottom: 16px;"><strong>Seconda coppia al 50%</strong> - Solo nel nostro negozio!</p>
             <div class="promo-timer">
                 <div class="timer-block">
                     <span class="timer-number" id="timer-hours">24</span>
@@ -1251,8 +1529,20 @@
         <div class="services-grid">
             <div class="service-card" onclick="navigateTo('prenota')">
                 <div class="service-icon">📅</div>
-                <h3 class="service-title">Prenota</h3>
-                <p class="service-desc">Visita oculistica o consulenza</p>
+                <h3 class="service-title">Prenota a Cesano</h3>
+                <p class="service-desc">Visita nel nostro negozio</p>
+            </div>
+            
+            <div class="service-card" onclick="navigateTo('clubete')" style="background: linear-gradient(135deg, var(--champagne), #b8941f); color: white; border: none; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3); transform: scale(1.05);">
+                <div class="service-icon" style="background: rgba(255, 255, 255, 0.2); color: white;">💎</div>
+                <h3 class="service-title" style="color: white; font-size: 18px;">Club &Te Cesano</h3>
+                <p class="service-desc" style="color: rgba(255, 255, 255, 0.9);">Il programma più amato!</p>
+            </div>
+            
+            <div class="service-card" onclick="navigateTo('catalogo')">
+                <div class="service-icon">🛒</div>
+                <h3 class="service-title">Catalogo</h3>
+                <p class="service-desc">Sfoglia tutti i prodotti online</p>
             </div>
             
             <div class="service-card" onclick="navigateTo('clubete')">
@@ -1261,10 +1551,16 @@
                 <p class="service-desc">3 occhiali in 3 anni da 20€/mese</p>
             </div>
             
-            <div class="service-card" onclick="navigateTo('fortune')">
-                <div class="service-icon">🎁</div>
-                <h3 class="service-title">Premi</h3>
-                <p class="service-desc">Scopri le offerte del giorno</p>
+            <div class="service-card" onclick="navigateTo('riordini')">
+                <div class="service-icon">🔄</div>
+                <h3 class="service-title">Riordini LAC</h3>
+                <p class="service-desc">Riordina le tue lenti a contatto</p>
+            </div>
+            
+            <div class="service-card" onclick="navigateTo('giochi')">
+                <div class="service-icon">🎮</div>
+                <h3 class="service-title">Giochi</h3>
+                <p class="service-desc">Divertiti e vinci premi!</p>
             </div>
             
             <div class="service-card" onclick="openMaps()">
@@ -1279,16 +1575,10 @@
                 <p class="service-desc">4.8/5 su Google</p>
             </div>
             
-            <div class="service-card" onclick="navigateTo('guide')">
-                <div class="service-icon">💡</div>
-                <h3 class="service-title">Guide</h3>
-                <p class="service-desc">Consigli per la vista</p>
-            </div>
-            
             <div class="service-card" onclick="navigateTo('negozio')">
                 <div class="service-icon">🏪</div>
                 <h3 class="service-title">Il Negozio</h3>
-                <p class="service-desc">Orari e contatti</p>
+                <p class="service-desc">Orari, contatti e guide</p>
             </div>
         </div>
     </div>
@@ -1297,8 +1587,8 @@
     <div id="prenota-page" class="page">
         <div class="hero">
             <div class="hero-content">
-                <h1 class="hero-title">Prenota la tua visita</h1>
-                <p class="hero-subtitle">Scegli il servizio più adatto a te</p>
+                <h1 class="hero-title">Prenota nel TUO negozio di <span style="color: var(--champagne);">Cesano</span></h1>
+                <p class="hero-subtitle">Il team di Cesano Boscone ti aspetta</p>
             </div>
         </div>
 
@@ -1341,9 +1631,9 @@
         </div>
 
         <div style="text-align: center; margin: 40px 20px;">
-            <p style="color: var(--steel); margin-bottom: 20px;">Preferisci parlare con noi?</p>
+            <p style="color: var(--steel); margin-bottom: 20px;">Preferisci parlare direttamente con il nostro team di Cesano?</p>
             <div class="quick-actions">
-                <a href="tel:+390245862417" class="quick-btn" onclick="trackPhoneClick('appointment_page')">📞 Chiama Ora</a>
+                <a href="tel:+390245862417" class="quick-btn" onclick="trackPhoneClick('appointment_page')">📞 Chiama Cesano</a>
             </div>
         </div>
     </div>
@@ -1352,18 +1642,28 @@
     <div id="clubete-page" class="page">
         <div class="hero" style="background: linear-gradient(135deg, var(--midnight), #1a2c48); color: white;">
             <div class="hero-content">
-                <h1 class="hero-title" style="color: white;">Club <span style="color: var(--champagne);">&Te</span></h1>
-                <p class="hero-subtitle" style="color: rgba(255, 255, 255, 0.9);">Semplice, flessibile, senza pensieri</p>
+                <h1 class="hero-title" style="color: white;">Club <span style="color: var(--champagne);">&Te</span> <br>Cesano Boscone</h1>
+                <p class="hero-subtitle" style="color: rgba(255, 255, 255, 0.9);">Il programma di successo del nostro negozio</p>
                 <div style="background: var(--champagne); color: var(--midnight); padding: 12px 24px; border-radius: 30px; display: inline-block; margin-top: 20px; font-weight: 600;">
-                    Da solo 20€ al mese
+                    🏪 Attivo nel nostro negozio di Cesano
                 </div>
             </div>
         </div>
 
         <div style="background: white; padding: 30px 20px; margin: 20px; border-radius: 20px; box-shadow: 0 10px 40px var(--shadow);">
             <h2 style="font-family: 'Playfair Display', serif; font-size: 28px; text-align: center; margin-bottom: 30px;">
-                3 occhiali in 3 anni, <span style="color: var(--champagne);">quando vuoi tu</span>
+                Il <span style="color: var(--champagne);">Club &Te</span> del TUO Salmoiraghi di Cesano
             </h2>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div style="background: linear-gradient(135deg, var(--champagne), #b8941f); color: white; padding: 16px 32px; border-radius: 30px; display: inline-block; margin-bottom: 20px; font-size: 20px; font-weight: 700;">
+                    3 occhiali in 3 anni da 20€/mese
+                </div>
+                <p style="color: var(--steel); font-size: 16px;">
+                    ⚡ <strong>Attivazione immediata</strong> nel nostro negozio di Cesano Boscone<br>
+                    🎯 <strong>Consulenza personalizzata</strong> dal nostro team locale
+                </p>
+            </div>
             
             <div style="display: grid; gap: 20px; margin-bottom: 30px;">
                 <div style="display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--silk); border-radius: 15px;">
@@ -1400,8 +1700,8 @@
             </div>
 
             <div style="text-align: center;">
-                <a href="https://wa.me/390245862417?text=Vorrei%20informazioni%20sul%20Club%20%26Te" target="_blank" class="quick-btn" style="font-size: 16px; padding: 16px 32px;" onclick="trackWhatsAppClick('club_te_signup')">
-                    💬 Iscriviti in Negozio
+                <a href="https://wa.me/390245862417?text=Ciao,%20vorrei%20iscrivermi%20al%20Club%20%26Te%20nel%20vostro%20negozio%20di%20Cesano%20Boscone.%20Quando%20posso%20venire%3F" target="_blank" class="quick-btn" style="font-size: 16px; padding: 16px 32px;" onclick="trackWhatsAppClick('club_te_signup')">
+                    💬 Iscriviti nel nostro negozio
                 </a>
             </div>
         </div>
@@ -1410,94 +1710,270 @@
         <!-- ... resto del contenuto Club &Te ... -->
     </div>
 
-    <!-- FORTUNE WHEEL PAGE -->
-    <div id="fortune-page" class="page">
-        <div class="hero">
+    <!-- GIOCHI PAGE -->
+    <div id="giochi-page" class="page">
+        <div class="hero" style="background: linear-gradient(135deg, var(--midnight), #1a2c48); color: white;">
             <div class="hero-content">
-                <h1 class="hero-title">Ruota dei <span style="color: var(--champagne);">Premi</span></h1>
-                <p class="hero-subtitle">Tenta la fortuna per sconti esclusivi!</p>
-            </div>
-        </div>
-
-        <div class="wheel-container">
-            <div class="wheel-wrapper">
-                <div class="wheel-pointer"></div>
-                <div class="wheel" id="wheel">
-                    <div class="wheel-prizes">
-                        <div class="prize-text" style="top: 10%; left: 50%; transform: translateX(-50%) rotate(0deg);">20% SOLE</div>
-                        <div class="prize-text" style="top: 25%; right: 15%; transform: rotate(60deg);">50% LENTI</div>
-                        <div class="prize-text" style="bottom: 25%; right: 15%; transform: rotate(120deg);">€50 VISTA</div>
-                        <div class="prize-text" style="bottom: 10%; left: 50%; transform: translateX(-50%) rotate(180deg);">RIPROVA</div>
-                        <div class="prize-text" style="bottom: 25%; left: 15%; transform: rotate(240deg);">50% VISTA</div>
-                        <div class="prize-text" style="top: 25%; left: 15%; transform: rotate(300deg);">RIPROVA</div>
-                    </div>
-                    <div class="wheel-center">S&V</div>
+                <h1 class="hero-title" style="color: white;">Game Hub <span style="color: var(--champagne);">S&V</span></h1>
+                <p class="hero-subtitle" style="color: rgba(255, 255, 255, 0.9);">Gioca, divertiti e vinci premi esclusivi!</p>
+                <div style="background: var(--champagne); color: var(--midnight); padding: 8px 16px; border-radius: 20px; display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 600;">
+                    🎁 Una vittoria al giorno per tutti i giochi
                 </div>
             </div>
-            <button class="spin-button" onclick="spinWheel()">GIRA LA RUOTA</button>
         </div>
 
-        <div style="text-align: center; padding: 0 20px; color: var(--steel); font-size: 14px; margin-bottom: 40px;">
-            <p>🎯 Un tentativo al giorno</p>
-            <p>🎁 Mostra il codice in negozio</p>
-            <p>⏰ Valido per 7 giorni</p>
-        </div>
-
-        <!-- QR Code Generator Section -->
-        <div style="background: white; margin: 20px; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px var(--shadow);">
-            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 20px; color: var(--midnight);">
-                🎮 Sfida i tuoi amici!
-            </h2>
-            <p style="text-align: center; color: var(--steel); margin-bottom: 30px;">
-                Genera un QR code per far giocare chi conosci alla ruota dei premi
-            </p>
-            
-            <div id="qr-generator" style="text-align: center;">
-                <button class="quick-btn" onclick="generateQRCode()" style="margin-bottom: 30px;">
-                    📱 Genera QR Code
-                </button>
+        <!-- Games Grid -->
+        <div style="padding: 0 20px; max-width: 800px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px;">
                 
-                <div id="qr-container" style="display: none;">
-                    <div style="background: var(--silk); padding: 20px; border-radius: 15px; margin-bottom: 20px;">
-                        <div id="qr-canvas" style="margin: 0 auto; display: block;"></div>
-                    </div>
-                    
-                    <p style="color: var(--steel); font-size: 14px; margin-bottom: 20px;">
-                        📲 Mostra questo QR ai tuoi amici per farli giocare
-                    </p>
-                    
-                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                        <button class="quick-btn secondary" onclick="downloadQR()">
-                            💾 Scarica QR
-                        </button>
-                        <button class="quick-btn secondary" onclick="shareQR()">
-                            📤 Condividi
-                        </button>
-                        <button class="quick-btn secondary" onclick="copyLink()">
-                            🔗 Copia Link
-                        </button>
-                    </div>
-                    
-                    <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.1)); border-radius: 10px; border-left: 3px solid var(--champagne);">
-                        <p style="font-size: 13px; color: var(--steel); margin: 0;">
-                            💡 <strong>Suggerimento:</strong> Stampalo e mettilo in vista per far giocare i clienti in negozio!
-                        </p>
+                <!-- Ruota della Fortuna -->
+                <div class="service-card" onclick="playGame('wheel')" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52); color: white; border: none; box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);">
+                    <div style="font-size: 48px; margin-bottom: 15px;">🎡</div>
+                    <h3 style="color: white; font-size: 20px; margin-bottom: 10px;">Ruota della Fortuna</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 15px;">Gira e scopri il tuo premio!</p>
+                    <div style="background: rgba(255, 255, 255, 0.2); padding: 8px 12px; border-radius: 12px; font-size: 12px;">
+                        ⚡ Gioco veloce
                     </div>
                 </div>
+
+                <!-- Test della Vista -->
+                <div class="service-card" onclick="playGame('eyetest')" style="background: linear-gradient(135deg, #4ecdc4, #44a08d); color: white; border: none; box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3);">
+                    <div style="font-size: 48px; margin-bottom: 15px;">👁️</div>
+                    <h3 style="color: white; font-size: 20px; margin-bottom: 10px;">Sfida la Vista</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 15px;">Test di lettura progressivo</p>
+                    <div style="background: rgba(255, 255, 255, 0.2); padding: 8px 12px; border-radius: 12px; font-size: 12px;">
+                        🧠 Educativo
+                    </div>
+                </div>
+
+                <!-- Indovina il Brand -->
+                <div class="service-card" onclick="playGame('brandquiz')" style="background: linear-gradient(135deg, #a8e6cf, #7fcdcd); color: white; border: none; box-shadow: 0 10px 30px rgba(168, 230, 207, 0.3);">
+                    <div style="font-size: 48px; margin-bottom: 15px;">🕶️</div>
+                    <h3 style="color: white; font-size: 20px; margin-bottom: 10px;">Indovina il Brand</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 15px;">Riconosci le montature famose</p>
+                    <div style="background: rgba(255, 255, 255, 0.2); padding: 8px 12px; border-radius: 12px; font-size: 12px;">
+                        🏆 Challenge
+                    </div>
+                </div>
+
+                <!-- Quiz dell'Ottico -->
+                <div class="service-card" onclick="playGame('optician')" style="background: linear-gradient(135deg, #ffd93d, #ff6b35); color: white; border: none; box-shadow: 0 10px 30px rgba(255, 217, 61, 0.3);">
+                    <div style="font-size: 48px; margin-bottom: 15px;">🧠</div>
+                    <h3 style="color: white; font-size: 20px; margin-bottom: 10px;">Quiz dell'Ottico</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 15px;">Storia e curiosità S&V</p>
+                    <div style="background: rgba(255, 255, 255, 0.2); padding: 8px 12px; border-radius: 12px; font-size: 12px;">
+                        📚 Cultura
+                    </div>
+                </div>
+
+                <!-- Personalizzatore -->
+                <div class="service-card" onclick="playGame('creator')" style="background: linear-gradient(135deg, #a8edea, #fed6e3); color: var(--midnight); border: none; box-shadow: 0 10px 30px rgba(168, 237, 234, 0.3);">
+                    <div style="font-size: 48px; margin-bottom: 15px;">🎨</div>
+                    <h3 style="color: var(--midnight); font-size: 20px; margin-bottom: 10px;">Crea il Tuo Occhiale</h3>
+                    <p style="color: rgba(10, 22, 40, 0.7); font-size: 14px; margin-bottom: 15px;">Personalizza stile e colori</p>
+                    <div style="background: rgba(10, 22, 40, 0.1); padding: 8px 12px; border-radius: 12px; font-size: 12px; color: var(--midnight);">
+                        ✨ Creativo
+                    </div>
+                </div>
+
+                <!-- Memory Game -->
+                <div class="service-card" onclick="playGame('memory')" style="background: linear-gradient(135deg, #d299c2, #fef9d7); color: var(--midnight); border: none; box-shadow: 0 10px 30px rgba(210, 153, 194, 0.3);">
+                    <div style="font-size: 48px; margin-bottom: 15px;">🃏</div>
+                    <h3 style="color: var(--midnight); font-size: 20px; margin-bottom: 10px;">Memory Montature</h3>
+                    <p style="color: rgba(10, 22, 40, 0.7); font-size: 14px; margin-bottom: 15px;">Trova le coppie uguali</p>
+                    <div style="background: rgba(10, 22, 40, 0.1); padding: 8px 12px; border-radius: 12px; font-size: 12px; color: var(--midnight);">
+                        🧩 Memoria
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premi Info -->
+            <div style="background: white; border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 40px var(--shadow);">
+                <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 25px; color: var(--midnight);">
+                    🏆 Premi Disponibili
+                </h2>
+                
+                <div style="display: grid; gap: 15px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px; background: var(--silk); border-radius: 12px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 24px;">👓</span>
+                            <span style="color: var(--midnight); font-weight: 500;">50% su occhiale da vista*</span>
+                        </div>
+                        <span style="background: var(--ruby); color: white; padding: 4px 8px; border-radius: 8px; font-size: 12px; font-weight: 600;">5%</span>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px; background: var(--silk); border-radius: 12px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 24px;">💰</span>
+                            <span style="color: var(--midnight); font-weight: 500;">€50 extra sconto vista</span>
+                        </div>
+                        <span style="background: var(--champagne); color: white; padding: 4px 8px; border-radius: 8px; font-size: 12px; font-weight: 600;">15%</span>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px; background: var(--silk); border-radius: 12px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 24px;">👁️</span>
+                            <span style="color: var(--midnight); font-weight: 500;">25% su due confezioni LAC</span>
+                        </div>
+                        <span style="background: var(--sapphire); color: white; padding: 4px 8px; border-radius: 8px; font-size: 12px; font-weight: 600;">20%</span>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px; background: var(--silk); border-radius: 12px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-size: 24px;">🕶️</span>
+                            <span style="color: var(--midnight); font-weight: 500;">20% occhiale da sole</span>
+                        </div>
+                        <span style="background: var(--emerald); color: white; padding: 4px 8px; border-radius: 8px; font-size: 12px; font-weight: 600;">60%</span>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.1)); border-radius: 12px; border-left: 3px solid var(--champagne);">
+                    <p style="font-size: 13px; color: var(--steel); margin: 0; line-height: 1.5;">
+                        <strong>Come funziona:</strong> Gioca tutti i giochi che vuoi, ma puoi vincere solo una volta al giorno (per tutti i giochi). 
+                        I codici premio sono validi 7 giorni. *Minima spesa pre-sconto €50.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Game Container -->
+            <div id="game-container" style="display: none;">
+                <!-- I singoli giochi verranno caricati qui -->
             </div>
         </div>
     </div>
 
-    <!-- GUIDE PAGE -->
-    <div id="guide-page" class="page">
+    <!-- NEGOZIO PAGE -->
+    <div id="negozio-page" class="page">
         <div class="hero">
             <div class="hero-content">
-                <h1 class="hero-title">Guide Esclusive</h1>
-                <p class="hero-subtitle">Consigli professionali per la tua vista</p>
+                <h1 class="hero-title">Il TUO negozio di <span style="color: var(--champagne);">Cesano Boscone</span></h1>
+                <p class="hero-subtitle">Esperienza e professionalità dal 1865 • Le Porte di Milano</p>
             </div>
         </div>
 
-        <div class="guides-container">
+        <div class="store-info">
+            <h2>Il TUO Salmoiraghi & Viganò di Cesano</h2>
+            
+            <div class="info-row">
+                <div class="info-icon">📍</div>
+                <div class="info-text">
+                    <div class="info-label">Indirizzo</div>
+                    <div class="info-value">
+                        <a href="https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6" target="_blank" onclick="trackMapsClick('store_info')">
+                            Via Don Sturzo<br>
+                            CC Le Porte di Milano<br>
+                            20090 Cesano Boscone (MI)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-icon">📞</div>
+                <div class="info-text">
+                    <div class="info-label">Telefono</div>
+                    <div class="info-value">
+                        <a href="tel:+390245862417" onclick="trackPhoneClick('store_info')">02 4586 2417</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-icon">💬</div>
+                <div class="info-text">
+                    <div class="info-label">WhatsApp Business</div>
+                    <div class="info-value">
+                        <a href="https://wa.me/390245862417?text=Salve,%20vorrei%20informazioni" target="_blank" onclick="trackWhatsAppClick('store_info')">
+                            Chat con noi
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-icon">✉️</div>
+                <div class="info-text">
+                    <div class="info-label">Email</div>
+                    <div class="info-value">
+                        <a href="mailto:mi835@luxottica.com" onclick="trackEmailClick('store_info')">Invia email</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-icon">🕐</div>
+                <div class="info-text">
+                    <div class="info-label">Orari</div>
+                    <div class="info-value">
+                        Lun-Sab: 9:00 - 20:00<br>
+                        Domenica: 10:00 - 20:00
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-icon">📱</div>
+                <div class="info-text">
+                    <div class="info-label">Seguici su Instagram</div>
+                    <div class="info-value">
+                        <a href="https://www.instagram.com/salmoiraghievigano/" target="_blank" onclick="openSocialMedia()">
+                            @salmoiraghievigano
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="reviews-section">
+            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px;">Cosa dicono i clienti del nostro negozio di Cesano</h2>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-author">Mariateresa C.</span>
+                    <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="review-text">"Sono cliente da diversi anni ed ogni volta rimango più che soddisfatta per l'alta professionalità dei tecnici e delle operatrici di servizio vendita. Congratulazioni vivissime!"</p>
+                <span class="review-date">5 mesi fa</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-author">Gianluca B.</span>
+                    <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="review-text">"Sono stati molto competenti, gentili e mi hanno saputo consigliare al meglio sia dal punto di vista tecnico, medico, estetico e non ultimo finanziario. Visita optometrica molto accurata e precisa da 10 e lode."</p>
+                <span class="review-date">1 anno fa</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-author">Ornella B.</span>
+                    <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="review-text">"Negozio molto fornito, montature per occhiali da vista belle a prezzi convenienti, occhiali da sole di tutte le marche. In 2 giorni hanno provveduto ad avvisarmi mandandomi un'email, sono soddisfatta."</p>
+                <span class="review-date">7 mesi fa</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-author">Shani A.</span>
+                    <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="review-text">"La dipendente è stata molto disponibile, gentile ed efficiente. Domande chiare per capire le mie esigenze e i miei gusti. Gli occhiali acquistati sono bellissimi e di ottima qualità!"</p>
+                <span class="review-date">2 anni fa</span>
+            </div>
+
+            <a href="https://share.google/kKyQCHvheXBI4EgKd" target="_blank" class="review-cta" onclick="trackReviewClick('review_cta')">
+                ✍️ Lascia la tua recensione
+            </a>
+        </div>
+
+        <!-- Guide Section -->
+        <div style="padding: 0 20px; max-width: 1000px; margin: 40px auto 0;">
+            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px; font-size: 28px; color: var(--midnight);">
+                💡 Guide e Consigli Utili
+            </h2>
+
             <div class="guide-card" onclick="toggleGuide(this)">
                 <div class="guide-header">
                     <h3 class="guide-title">Come Pulire le Lenti</h3>
@@ -1579,124 +2055,6 @@
         </div>
     </div>
 
-    <!-- NEGOZIO PAGE -->
-    <div id="negozio-page" class="page">
-        <div class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title">Il Nostro Negozio</h1>
-                <p class="hero-subtitle">Esperienza e professionalità dal 1865</p>
-            </div>
-        </div>
-
-        <div class="store-info">
-            <h2>Informazioni & Contatti</h2>
-            
-            <div class="info-row">
-                <div class="info-icon">📍</div>
-                <div class="info-text">
-                    <div class="info-label">Indirizzo</div>
-                    <div class="info-value">
-                        <a href="https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6" target="_blank" onclick="trackMapsClick('store_info')">
-                            Via Don Sturzo<br>
-                            CC Le Porte di Milano<br>
-                            20090 Cesano Boscone (MI)
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-row">
-                <div class="info-icon">📞</div>
-                <div class="info-text">
-                    <div class="info-label">Telefono</div>
-                    <div class="info-value">
-                        <a href="tel:+390245862417" onclick="trackPhoneClick('store_info')">02 4586 2417</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-row">
-                <div class="info-icon">💬</div>
-                <div class="info-text">
-                    <div class="info-label">WhatsApp Business</div>
-                    <div class="info-value">
-                        <a href="https://wa.me/390245862417?text=Salve,%20vorrei%20informazioni" target="_blank" onclick="trackWhatsAppClick('store_info')">
-                            Chat con noi
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-row">
-                <div class="info-icon">✉️</div>
-                <div class="info-text">
-                    <div class="info-label">Email</div>
-                    <div class="info-value">
-                        <a href="mailto:mi835@luxottica.com" onclick="trackEmailClick('store_info')">Invia email</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-row">
-                <div class="info-icon">🕐</div>
-                <div class="info-text">
-                    <div class="info-label">Orari</div>
-                    <div class="info-value">
-                        Lun-Sab: 9:00 - 20:00<br>
-                        Domenica: 10:00 - 20:00
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-row">
-                <div class="info-icon">⭐</div>
-                <div class="info-text">
-                    <div class="info-label">Recensioni Google</div>
-                    <div class="info-value">
-                        <a href="https://g.page/r/CYXFRNPfaJnwEBM/review" target="_blank" onclick="trackReviewClick('store_info')">
-                            4.8/5 ⭐ Leggi le recensioni
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="reviews-section">
-            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px;">Cosa dicono i nostri clienti</h2>
-            
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="review-author">Maria R.</span>
-                    <span class="review-rating">⭐⭐⭐⭐⭐</span>
-                </div>
-                <p class="review-text">"Servizio impeccabile! Il personale è estremamente competente e mi ha aiutato a scegliere la montatura perfetta. Tornerò sicuramente."</p>
-                <span class="review-date">2 settimane fa</span>
-            </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="review-author">Giuseppe L.</span>
-                    <span class="review-rating">⭐⭐⭐⭐⭐</span>
-                </div>
-                <p class="review-text">"Professionalità e cortesia. Ho trovato esattamente quello che cercavo e i prezzi sono molto competitivi."</p>
-                <span class="review-date">1 mese fa</span>
-            </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="review-author">Francesca M.</span>
-                    <span class="review-rating">⭐⭐⭐⭐⭐</span>
-                </div>
-                <p class="review-text">"Ottima esperienza! Personale qualificato e grande assortimento di montature di marca."</p>
-                <span class="review-date">1 mese fa</span>
-            </div>
-
-            <a href="https://g.page/r/CYXFRNPfaJnwEBM/review" target="_blank" class="review-cta" onclick="trackReviewClick('review_cta')">
-                ✍️ Lascia la tua recensione
-            </a>
-        </div>
-    </div>
-
     <!-- Cookie Banner -->
     <div class="cookie-banner" id="cookie-banner">
         <div class="cookie-content">
@@ -1764,14 +2122,14 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-brand">Salmoiraghi & Viganò</div>
+            <div class="footer-brand">Il TUO Salmoiraghi & Viganò</div>
             <p class="footer-text">
                 L'eccellenza della vista dal 1865<br>
-                La tua boutique di fiducia
+                <strong>La tua boutique di fiducia a Cesano Boscone</strong>
             </p>
             <p class="footer-text">
                 <a href="https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6" target="_blank" class="footer-link" onclick="trackMapsClick('footer')">
-                    📍 Vieni a trovarci
+                    📍 Vieni a trovarci alle Porte di Milano
                 </a>
             </p>
         </div>
@@ -1783,17 +2141,17 @@
             <span class="nav-icon">🏠</span>
             <span class="nav-label">Home</span>
         </a>
+        <a href="#catalogo" class="nav-item" onclick="navigateTo('catalogo'); return false;">
+            <span class="nav-icon">🛒</span>
+            <span class="nav-label">Catalogo</span>
+        </a>
         <a href="#prenota" class="nav-item" onclick="navigateTo('prenota'); return false;">
             <span class="nav-icon">📅</span>
             <span class="nav-label">Prenota</span>
         </a>
-        <a href="#fortune" class="nav-item" onclick="navigateTo('fortune'); return false;">
-            <span class="nav-icon">🎁</span>
-            <span class="nav-label">Premi</span>
-        </a>
-        <a href="#guide" class="nav-item" onclick="navigateTo('guide'); return false;">
-            <span class="nav-icon">💡</span>
-            <span class="nav-label">Guide</span>
+        <a href="#giochi" class="nav-item" onclick="navigateTo('giochi'); return false;">
+            <span class="nav-icon">🎮</span>
+            <span class="nav-label">Giochi</span>
         </a>
         <a href="#negozio" class="nav-item" onclick="navigateTo('negozio'); return false;">
             <span class="nav-icon">🏪</span>
@@ -2059,7 +2417,7 @@
                 category: 'engagement',
                 label: source,
                 source: source,
-                review_url: 'https://g.page/r/CYXFRNPfaJnwEBM/review'
+                review_url: 'https://share.google/kKyQCHvheXBI4EgKd'
             });
         }
 
@@ -2076,8 +2434,9 @@
             'home': 'home-page',
             'prenota': 'prenota-page', 
             'clubete': 'clubete-page',
-            'fortune': 'fortune-page',
-            'guide': 'guide-page',
+            'catalogo': 'catalogo-page',
+            'riordini': 'riordini-page',
+            'giochi': 'giochi-page',
             'negozio': 'negozio-page'
         };
 
@@ -2118,7 +2477,47 @@
         
         function openGoogleReviews() {
             trackReviewClick('service_card');
-            window.open('https://g.page/r/CYXFRNPfaJnwEBM/review', '_blank');
+            window.open('https://share.google/kKyQCHvheXBI4EgKd', '_blank');
+        }
+
+        function openCatalog(category) {
+            let url = 'https://www.salmoiraghievigano.it/';
+            let trackingLabel = 'catalog_' + category;
+            
+            switch(category) {
+                case 'vista':
+                    url = 'https://www.salmoiraghievigano.it/occhiali-da-vista';
+                    break;
+                case 'sole':
+                    url = 'https://www.salmoiraghievigano.it/occhiali-da-sole';
+                    break;
+                case 'lac':
+                    url = 'https://www.salmoiraghievigano.it/lenti-a-contatto';
+                    break;
+                case 'accessori':
+                    url = 'https://www.salmoiraghievigano.it/';
+                    trackingLabel = 'catalog_accessories';
+                    break;
+            }
+            
+            trackEvent('catalog_click', {
+                category: 'engagement',
+                label: trackingLabel,
+                source: 'catalog_page',
+                category_type: category,
+                destination_url: url
+            });
+            
+            window.open(url, '_blank');
+        }
+
+        function openSocialMedia() {
+            trackEvent('social_click', {
+                category: 'engagement',
+                label: 'instagram_official',
+                source: 'social_section'
+            });
+            window.open('https://www.instagram.com/salmoiraghievigano/', '_blank');
         }
 
         // ===== COUNTDOWN TIMER =====
@@ -2202,111 +2601,448 @@
             }
         }
 
-        // ===== FORTUNE WHEEL - ENHANCED =====
-        let isSpinning = false;
-        let lastSpinDate = localStorage.getItem('lastSpinDate');
-        let currentRotation = 0;
+        // ===== GAME SYSTEM - ENHANCED =====
+        let hasWonToday = localStorage.getItem('gameWinToday') === new Date().toDateString();
+        let currentGame = null;
         
-        function canSpin() {
+        // Prize system with exact percentages
+        const prizes = [
+            { name: '50% occhiale da vista', code: 'VISTA50', weight: 5, condition: 'Minima spesa pre-sconto €50' },
+            { name: '€50 extra sconto vista', code: 'EXTRA50', weight: 15, condition: 'Su qualsiasi montatura' },
+            { name: '25% su due confezioni LAC', code: 'LAC25', weight: 20, condition: 'Valido su tutte le marche' },
+            { name: '20% occhiale da sole', code: 'SOLE20', weight: 60, condition: 'Su tutta la collezione' }
+        ];
+        
+        function canWinToday() {
             const today = new Date().toDateString();
-            return lastSpinDate !== today;
+            return localStorage.getItem('gameWinToday') !== today;
         }
-
-        function spinWheel() {
-            if (isSpinning) return;
-            
-            if (!canSpin()) {
-                showModal('⏰', 'Torna domani!', 'Hai già girato la ruota oggi. Ritorna domani per un nuovo tentativo!');
-                trackEvent('wheel_daily_limit_reached', {
-                    category: 'engagement',
-                    label: 'daily_limit'
-                });
-                return;
-            }
-            
-            isSpinning = true;
-            const wheel = document.getElementById('wheel');
-            const spinButton = document.querySelector('.spin-button');
-            
-            spinButton.disabled = true;
-            spinButton.textContent = 'GIRANDO...';
-            
-            Logger.log('Ruota in movimento...');
-            
-            const prizes = [
-                { name: '20% occhiale da sole', angle: 0, weight: 40 },
-                { name: '50% lenti a contatto', angle: 60, weight: 25 },
-                { name: '€50 extra sconto vista', angle: 120, weight: 20 },
-                { name: 'Riprova domani!', angle: 180, weight: 5 },
-                { name: '50% occhiale da vista', angle: 240, weight: 8 },
-                { name: 'Riprova domani!', angle: 300, weight: 2 }
-            ];
-            
+        
+        function selectPrize() {
             const totalWeight = prizes.reduce((sum, prize) => sum + prize.weight, 0);
             let random = Math.random() * totalWeight;
-            let selectedPrize = prizes[0];
             
             for (let prize of prizes) {
                 random -= prize.weight;
                 if (random <= 0) {
-                    selectedPrize = prize;
-                    break;
+                    return prize;
                 }
             }
+            return prizes[prizes.length - 1];
+        }
+        
+        function playGame(gameType) {
+            if (!canWinToday() && Math.random() < 0.3) {
+                showModal('⏰', 'Hai già vinto oggi!', 
+                    `Hai già vinto un premio oggi. Puoi continuare a giocare per divertirti, ma per vincere altri premi torna domani!<br><br>
+                    <button class="quick-btn" onclick="closeModal(); startGame('${gameType}');" style="margin-top: 15px;">🎮 Gioca lo stesso!</button>`
+                );
+                return;
+            }
+            
+            startGame(gameType);
+        }
+        
+        function startGame(gameType) {
+            currentGame = gameType;
+            
+            switch(gameType) {
+                case 'wheel':
+                    showWheelGame();
+                    break;
+                case 'eyetest':
+                    showEyeTestGame();
+                    break;
+                case 'brandquiz':
+                    showBrandQuizGame();
+                    break;
+                case 'optician':
+                    showOpticianQuizGame();
+                    break;
+                case 'creator':
+                    showCreatorGame();
+                    break;
+                case 'memory':
+                    showMemoryGame();
+                    break;
+            }
+            
+            trackEvent('game_started', {
+                category: 'engagement',
+                label: gameType,
+                game_type: gameType,
+                can_win_today: canWinToday()
+            });
+        }
+        
+        function completeGame(gameType, success = true) {
+            if (!success) {
+                showModal('😔', 'Riprova!', 
+                    `Non sei riuscito a completare il gioco, ma puoi riprovare subito!<br><br>
+                    <button class="quick-btn" onclick="closeModal(); startGame('${gameType}');" style="margin-top: 15px;">🔄 Riprova</button>`
+                );
+                return;
+            }
+            
+            if (canWinToday()) {
+                const prize = selectPrize();
+                const code = 'SV' + Date.now().toString().slice(-6);
+                
+                showModal('🎉', 'Congratulazioni!', 
+                    `<p style="font-size: 20px; margin: 20px 0;">Hai vinto:<br><strong>${prize.name}</strong></p>
+                    <div style="background: var(--silk); padding: 20px; border-radius: 15px; margin: 20px 0;">
+                        <p style="font-family: monospace; font-size: 24px; letter-spacing: 3px; color: var(--midnight);">${code}</p>
+                        <p style="font-size: 12px; color: var(--steel); margin-top: 8px;">${prize.condition}</p>
+                    </div>
+                    <p style="color: var(--steel); font-size: 14px;">Mostra questo codice in negozio<br>Valido per 7 giorni</p>
+                    <a href="https://wa.me/390245862417?text=Ho%20vinto%20il%20codice%20${code}%20per%20${encodeURIComponent(prize.name)}" target="_blank" class="quick-btn" style="margin-top: 20px;" onclick="trackWhatsAppClick('game_winner')">💬 Invia su WhatsApp</a>`
+                );
+                
+                localStorage.setItem('gameWinToday', new Date().toDateString());
+                hasWonToday = true;
+                
+                trackEvent('game_won', {
+                    category: 'conversion',
+                    label: gameType,
+                    game_type: gameType,
+                    prize: prize.name,
+                    code: code
+                });
+            } else {
+                showModal('👏', 'Ben giocato!', 
+                    `Ottima performance! Hai già vinto oggi, ma continua a giocare per divertirti.<br><br>
+                    <p style="color: var(--steel); font-size: 14px; margin-top: 16px;">Torna domani per vincere altri premi!</p>`
+                );
+                
+                trackEvent('game_completed_no_win', {
+                    category: 'engagement',
+                    label: gameType,
+                    game_type: gameType
+                });
+            }
+        }
+        
+        // ===== WHEEL GAME =====
+        function showWheelGame() {
+            const wheelHTML = `
+                <div style="background: white; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 20px 60px var(--shadow);">
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 20px; color: var(--midnight);">🎡 Ruota della Fortuna</h2>
+                    
+                    <div style="position: relative; width: 280px; height: 280px; margin: 0 auto 30px;">
+                        <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 40px solid var(--champagne); filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.3)); z-index: 11;"></div>
+                        
+                        <div id="game-wheel" style="width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(from 0deg, var(--champagne) 0deg 60deg, var(--midnight) 60deg 120deg, var(--champagne) 120deg 180deg, var(--midnight) 180deg 240deg, var(--champagne) 240deg 300deg, var(--midnight) 300deg 360deg); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99); position: relative;">
+                            
+                            <div style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%) rotate(0deg); color: white; font-size: 11px; font-weight: 700; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">SOLE 20%</div>
+                            <div style="position: absolute; top: 25%; right: 15%; transform: rotate(60deg); color: white; font-size: 11px; font-weight: 700; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">LAC 25%</div>
+                            <div style="position: absolute; bottom: 25%; right: 15%; transform: rotate(120deg); color: white; font-size: 11px; font-weight: 700; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">€50 EXTRA</div>
+                            <div style="position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%) rotate(180deg); color: white; font-size: 11px; font-weight: 700; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">RIPROVA</div>
+                            <div style="position: absolute; bottom: 25%; left: 15%; transform: rotate(240deg); color: white; font-size: 11px; font-weight: 700; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">VISTA 50%</div>
+                            <div style="position: absolute; top: 25%; left: 15%; transform: rotate(300deg); color: white; font-size: 11px; font-weight: 700; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">RIPROVA</div>
+                            
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 24px; color: var(--midnight); z-index: 10; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);">S&V</div>
+                        </div>
+                    </div>
+                    
+                    <button class="quick-btn" onclick="spinGameWheel()" style="width: 100%; font-size: 16px; padding: 18px;" id="spin-game-btn">🎡 GIRA LA RUOTA</button>
+                    <button class="quick-btn secondary" onclick="closeGameModal()" style="width: 100%; margin-top: 10px;">🔙 Torna ai Giochi</button>
+                </div>
+            `;
+            
+            showModal('', '', wheelHTML);
+        }
+        
+        let gameWheelRotation = 0;
+        function spinGameWheel() {
+            const wheel = document.getElementById('game-wheel');
+            const button = document.getElementById('spin-game-btn');
+            
+            if (!wheel || button.disabled) return;
+            
+            button.disabled = true;
+            button.textContent = 'GIRANDO...';
             
             const spins = 5 + Math.random() * 3;
-            const finalAngle = 360 - selectedPrize.angle + (Math.random() * 40 - 20);
-            const totalRotation = currentRotation + (spins * 360) + finalAngle;
+            const finalAngle = Math.random() * 360;
+            const totalRotation = gameWheelRotation + (spins * 360) + finalAngle;
             
             wheel.style.transform = `rotate(${totalRotation}deg)`;
-            currentRotation = totalRotation % 360;
+            gameWheelRotation = totalRotation % 360;
             
             setTimeout(() => {
-                const isWin = !selectedPrize.name.includes('Riprova');
-                const code = isWin ? 'SV' + Date.now().toString().slice(-6) : null;
-                
-                Logger.log('Risultato ruota:', { selectedPrize, isWin, code });
-                
-                if (isWin) {
-                    showModal(
-                        '🎉',
-                        'Congratulazioni!',
-                        `<p style="font-size: 20px; margin: 20px 0;">Hai vinto:<br><strong>${selectedPrize.name}</strong></p>
-                        <div style="background: var(--silk); padding: 20px; border-radius: 15px; margin: 20px 0;">
-                            <p style="font-family: monospace; font-size: 24px; letter-spacing: 3px; color: var(--midnight);">${code}</p>
-                        </div>
-                        <p style="color: var(--steel); font-size: 14px;">Mostra questo codice in negozio<br>Valido per 7 giorni</p>
-                        <a href="https://wa.me/390245862417?text=Ho%20vinto%20il%20codice%20${code}%20per%20${encodeURIComponent(selectedPrize.name)}" target="_blank" class="quick-btn" style="margin-top: 20px;" onclick="trackWhatsAppClick('wheel_winner')">💬 Invia su WhatsApp</a>`
-                    );
-                } else {
-                    showModal(
-                        '😔',
-                        'Riprova domani!',
-                        `<p style="font-size: 18px; margin: 20px 0;">Non hai vinto questa volta, ma non arrenderti!</p>
-                        <p style="color: var(--steel); font-size: 14px;">Torna domani per un nuovo tentativo gratuito</p>
-                        <div style="margin-top: 20px; padding: 15px; background: var(--silk); border-radius: 10px;">
-                            <p style="font-size: 14px; color: var(--midnight);">💡 <strong>Intanto scopri:</strong><br>
-                            • Il Club &Te da 20€/mese<br>
-                            • Le nostre offerte in negozio</p>
-                        </div>`
-                    );
-                }
-                
-                localStorage.setItem('lastSpinDate', new Date().toDateString());
-                
-                spinButton.disabled = false;
-                spinButton.textContent = 'GIRA LA RUOTA';
-                isSpinning = false;
-                
-                trackEvent('wheel_spin', {
-                    category: 'engagement',
-                    label: selectedPrize.name,
-                    result: selectedPrize.name,
-                    is_winner: isWin,
-                    code: code || 'none'
-                });
-                
+                button.disabled = false;
+                button.textContent = '🎡 GIRA LA RUOTA';
+                closeGameModal();
+                completeGame('wheel', true);
             }, 4000);
+        }
+        
+        // ===== EYE TEST GAME =====
+        function showEyeTestGame() {
+            const letters = ['E', 'F', 'P', 'T', 'O', 'Z', 'L', 'P', 'E', 'D'];
+            let currentLevel = 0;
+            const maxLevels = 5;
+            
+            showEyeTestLevel(currentLevel, letters, maxLevels);
+        }
+        
+        function showEyeTestLevel(level, letters, maxLevels) {
+            const fontSize = 120 - (level * 20);
+            const currentLetter = letters[Math.floor(Math.random() * letters.length)];
+            
+            const eyeTestHTML = `
+                <div style="background: white; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 20px 60px var(--shadow); max-width: 500px;">
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px; color: var(--midnight);">👁️ Test della Vista</h2>
+                    
+                    <div style="background: var(--silk); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+                        <p style="color: var(--steel); margin-bottom: 20px;">Livello ${level + 1}/${maxLevels}</p>
+                        <div style="font-family: monospace; font-size: ${fontSize}px; font-weight: bold; color: var(--midnight); margin: 20px 0; line-height: 1;">${currentLetter}</div>
+                        <p style="color: var(--steel); font-size: 14px;">Quale lettera vedi?</p>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px;">
+                        <button class="quick-btn secondary" onclick="answerEyeTest('${currentLetter}', ${level}, ${maxLevels}, true)" style="font-size: 20px; padding: 15px;">${currentLetter}</button>
+                        <button class="quick-btn secondary" onclick="answerEyeTest('${currentLetter}', ${level}, ${maxLevels}, false)" style="font-size: 20px; padding: 15px;">${letters[Math.floor(Math.random() * letters.length)]}</button>
+                        <button class="quick-btn secondary" onclick="answerEyeTest('${currentLetter}', ${level}, ${maxLevels}, false)" style="font-size: 20px; padding: 15px;">${letters[Math.floor(Math.random() * letters.length)]}</button>
+                        <button class="quick-btn secondary" onclick="answerEyeTest('${currentLetter}', ${level}, ${maxLevels}, false)" style="font-size: 20px; padding: 15px;">${letters[Math.floor(Math.random() * letters.length)]}</button>
+                    </div>
+                    
+                    <button class="quick-btn secondary" onclick="closeGameModal()" style="width: 100%;">🔙 Torna ai Giochi</button>
+                </div>
+            `;
+            
+            showModal('', '', eyeTestHTML);
+        }
+        
+        function answerEyeTest(correct, level, maxLevels, isCorrect) {
+            if (!isCorrect) {
+                completeGame('eyetest', false);
+                return;
+            }
+            
+            if (level + 1 >= maxLevels) {
+                closeGameModal();
+                completeGame('eyetest', true);
+            } else {
+                const letters = ['E', 'F', 'P', 'T', 'O', 'Z', 'L', 'P', 'E', 'D'];
+                showEyeTestLevel(level + 1, letters, maxLevels);
+            }
+        }
+        
+        // ===== BRAND QUIZ GAME =====
+        function showBrandQuizGame() {
+            const brands = [
+                { name: 'Ray-Ban', hint: 'Aviator, Wayfarer' },
+                { name: 'Oakley', hint: 'Sport, prestazioni' },
+                { name: 'Prada', hint: 'Lusso italiano' },
+                { name: 'Versace', hint: 'Glamour, Medusa' },
+                { name: 'Persol', hint: 'Tradizione italiana' },
+                { name: 'Dolce & Gabbana', hint: 'Stile siciliano' }
+            ];
+            
+            showBrandQuestion(0, brands, 0);
+        }
+        
+        function showBrandQuestion(questionIndex, brands, score) {
+            if (questionIndex >= 3) {
+                closeGameModal();
+                completeGame('brandquiz', score >= 2);
+                return;
+            }
+            
+            const currentBrand = brands[questionIndex];
+            const otherBrands = brands.filter((_, i) => i !== questionIndex);
+            const options = [currentBrand, ...otherBrands.slice(0, 2)].sort(() => Math.random() - 0.5);
+            
+            const brandQuizHTML = `
+                <div style="background: white; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 20px 60px var(--shadow); max-width: 500px;">
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px; color: var(--midnight);">🕶️ Indovina il Brand</h2>
+                    
+                    <div style="background: var(--silk); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+                        <p style="color: var(--steel); margin-bottom: 10px;">Domanda ${questionIndex + 1}/3 - Punteggio: ${score}</p>
+                        <div style="font-size: 48px; margin: 20px 0;">🕶️</div>
+                        <p style="color: var(--midnight); font-size: 18px; font-weight: 600; margin-bottom: 10px;">Indizio: ${currentBrand.hint}</p>
+                        <p style="color: var(--steel); font-size: 14px;">Quale brand è?</p>
+                    </div>
+                    
+                    <div style="display: grid; gap: 10px; margin-bottom: 20px;">
+                        ${options.map(option => `
+                            <button class="quick-btn secondary" onclick="answerBrandQuiz('${currentBrand.name}', '${option.name}', ${questionIndex}, ${score})" style="padding: 15px;">${option.name}</button>
+                        `).join('')}
+                    </div>
+                    
+                    <button class="quick-btn secondary" onclick="closeGameModal()" style="width: 100%;">🔙 Torna ai Giochi</button>
+                </div>
+            `;
+            
+            showModal('', '', brandQuizHTML);
+        }
+        
+        function answerBrandQuiz(correct, answer, questionIndex, score) {
+            const newScore = answer === correct ? score + 1 : score;
+            const brands = [
+                { name: 'Ray-Ban', hint: 'Aviator, Wayfarer' },
+                { name: 'Oakley', hint: 'Sport, prestazioni' },
+                { name: 'Prada', hint: 'Lusso italiano' },
+                { name: 'Versace', hint: 'Glamour, Medusa' },
+                { name: 'Persol', hint: 'Tradizione italiana' },
+                { name: 'Dolce & Gabbana', hint: 'Stile siciliano' }
+            ];
+            
+            showBrandQuestion(questionIndex + 1, brands, newScore);
+        }
+        
+        // ===== SIMPLIFIED GAMES FOR SPACE =====
+        function showOpticianQuizGame() {
+            const questions = [
+                { q: 'In che anno è nata Salmoiraghi & Viganò?', a: '1865', options: ['1865', '1880', '1900', '1920'] },
+                { q: 'Cosa significa UV400?', a: 'Blocca 100% raggi UV', options: ['Blocca 100% raggi UV', 'Tipo di lente', 'Marca', 'Colore'] },
+                { q: 'Quanto spesso controllare la vista?', a: 'Ogni 2 anni', options: ['Ogni anno', 'Ogni 2 anni', 'Ogni 5 anni', 'Mai'] }
+            ];
+            
+            showQuizQuestion(0, questions, 0, 'optician');
+        }
+        
+        function showCreatorGame() {
+            const creatorHTML = `
+                <div style="background: white; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 20px 60px var(--shadow); max-width: 500px;">
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px; color: var(--midnight);">🎨 Crea il Tuo Occhiale</h2>
+                    
+                    <div style="background: var(--silk); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+                        <div style="font-size: 80px; margin: 20px 0;" id="preview-glasses">👓</div>
+                        <p style="color: var(--steel); margin-bottom: 20px;">Personalizza il tuo stile</p>
+                        
+                        <div style="display: grid; gap: 10px;">
+                            <button class="quick-btn secondary" onclick="changeGlasses('🕶️')" style="padding: 10px;">🕶️ Sole</button>
+                            <button class="quick-btn secondary" onclick="changeGlasses('👓')" style="padding: 10px;">👓 Vista</button>
+                            <button class="quick-btn secondary" onclick="changeGlasses('🥽')" style="padding: 10px;">🥽 Sport</button>
+                        </div>
+                    </div>
+                    
+                    <button class="quick-btn" onclick="closeGameModal(); completeGame('creator', true);" style="width: 100%; margin-bottom: 10px;">✨ Salva Creazione</button>
+                    <button class="quick-btn secondary" onclick="closeGameModal()" style="width: 100%;">🔙 Torna ai Giochi</button>
+                </div>
+            `;
+            
+            showModal('', '', creatorHTML);
+        }
+        
+        function changeGlasses(emoji) {
+            const preview = document.getElementById('preview-glasses');
+            if (preview) preview.textContent = emoji;
+        }
+        
+        function showMemoryGame() {
+            const memoryHTML = `
+                <div style="background: white; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 20px 60px var(--shadow); max-width: 500px;">
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px; color: var(--midnight);">🃏 Memory Montature</h2>
+                    
+                    <div style="background: var(--silk); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+                        <p style="color: var(--steel); margin-bottom: 20px;">Trova le coppie uguali</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 200px; margin: 0 auto;" id="memory-grid">
+                            ${Array(8).fill(0).map((_, i) => `
+                                <div style="background: var(--champagne); color: white; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px;" onclick="flipCard(${i})">?</div>
+                            `).join('')}
+                        </div>
+                        
+                        <p style="color: var(--steel); font-size: 14px; margin-top: 15px;">Coppie trovate: <span id="pairs-found">0</span>/4</p>
+                    </div>
+                    
+                    <button class="quick-btn secondary" onclick="closeGameModal()" style="width: 100%;">🔙 Torna ai Giochi</button>
+                </div>
+            `;
+            
+            showModal('', '', memoryHTML);
+            initMemoryGame();
+        }
+        
+        let memoryCards = [];
+        let memoryFlipped = [];
+        let memoryMatched = [];
+        
+        function initMemoryGame() {
+            const symbols = ['👓', '🕶️', '👁️', '🔍'];
+            memoryCards = [...symbols, ...symbols].sort(() => Math.random() - 0.5);
+            memoryFlipped = [];
+            memoryMatched = [];
+        }
+        
+        function flipCard(index) {
+            if (memoryFlipped.length >= 2 || memoryFlipped.includes(index) || memoryMatched.includes(index)) return;
+            
+            const cards = document.querySelectorAll('#memory-grid div');
+            cards[index].textContent = memoryCards[index];
+            memoryFlipped.push(index);
+            
+            if (memoryFlipped.length === 2) {
+                setTimeout(() => {
+                    if (memoryCards[memoryFlipped[0]] === memoryCards[memoryFlipped[1]]) {
+                        memoryMatched.push(...memoryFlipped);
+                        document.getElementById('pairs-found').textContent = memoryMatched.length / 2;
+                        
+                        if (memoryMatched.length === 8) {
+                            setTimeout(() => {
+                                closeGameModal();
+                                completeGame('memory', true);
+                            }, 500);
+                        }
+                    } else {
+                        memoryFlipped.forEach(i => {
+                            cards[i].textContent = '?';
+                        });
+                    }
+                    memoryFlipped = [];
+                }, 1000);
+            }
+        }
+        
+        function showQuizQuestion(questionIndex, questions, score, gameType) {
+            if (questionIndex >= questions.length) {
+                closeGameModal();
+                completeGame(gameType, score >= 2);
+                return;
+            }
+            
+            const question = questions[questionIndex];
+            const shuffledOptions = [...question.options].sort(() => Math.random() - 0.5);
+            
+            const quizHTML = `
+                <div style="background: white; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 20px 60px var(--shadow); max-width: 500px;">
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px; color: var(--midnight);">🧠 Quiz dell'Ottico</h2>
+                    
+                    <div style="background: var(--silk); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+                        <p style="color: var(--steel); margin-bottom: 20px;">Domanda ${questionIndex + 1}/${questions.length} - Punteggio: ${score}</p>
+                        <p style="color: var(--midnight); font-size: 18px; font-weight: 600; margin-bottom: 20px;">${question.q}</p>
+                    </div>
+                    
+                    <div style="display: grid; gap: 10px; margin-bottom: 20px;">
+                        ${shuffledOptions.map(option => `
+                            <button class="quick-btn secondary" onclick="answerQuiz('${question.a}', '${option}', ${questionIndex}, ${score}, '${gameType}')" style="padding: 15px; font-size: 14px;">${option}</button>
+                        `).join('')}
+                    </div>
+                    
+                    <button class="quick-btn secondary" onclick="closeGameModal()" style="width: 100%;">🔙 Torna ai Giochi</button>
+                </div>
+            `;
+            
+            showModal('', '', quizHTML);
+        }
+        
+        function answerQuiz(correct, answer, questionIndex, score, gameType) {
+            const newScore = answer === correct ? score + 1 : score;
+            
+            const questions = gameType === 'optician' ? [
+                { q: 'In che anno è nata Salmoiraghi & Viganò?', a: '1865', options: ['1865', '1880', '1900', '1920'] },
+                { q: 'Cosa significa UV400?', a: 'Blocca 100% raggi UV', options: ['Blocca 100% raggi UV', 'Tipo di lente', 'Marca', 'Colore'] },
+                { q: 'Quanto spesso controllare la vista?', a: 'Ogni 2 anni', options: ['Ogni anno', 'Ogni 2 anni', 'Ogni 5 anni', 'Mai'] }
+            ] : [];
+            
+            showQuizQuestion(questionIndex + 1, questions, newScore, gameType);
+        }
+        
+        function closeGameModal() {
+            closeModal();
         }
 
         // ===== QR CODE FUNCTIONS - ENHANCED =====
@@ -2678,4 +3414,4 @@
 
     </script>
 </body>
-                </html>
+    </html>
