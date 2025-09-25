@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LX1EQS2ESC"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
         });
         
         gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID', {
+        gtag('config', 'G-LX1EQS2ESC', {
             'anonymize_ip': true,
             'allow_google_signals': false,
             'allow_ad_personalization_signals': false
@@ -2007,7 +2007,8 @@
                         'event_category': eventData.category || 'engagement',
                         'event_label': eventData.label || '',
                         'value': eventData.value || 1,
-                        'custom_parameter': eventData
+                        'custom_parameter': eventData,
+                        'send_to': 'G-LX1EQS2ESC'
                     });
                     Logger.log('Evento GA inviato', { eventName, eventData });
                 } catch (e) {
@@ -2677,4 +2678,4 @@
 
     </script>
 </body>
-    </html>
+                </html>
