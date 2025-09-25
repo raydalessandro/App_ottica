@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Salmoiraghi & Viganò - Cesano Boscone | Digital Boutique</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0a1628">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="S&V Boutique">
+    <meta name="description" content="La tua boutique Salmoiraghi & Viganò sempre in tasca. Prenota visite, scopri promozioni esclusive, prova virtualmente gli occhiali.">
+    
+    <!-- Luxottica Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --midnight: #0a1628;
+            --champagne: #d4af37;
+            --pearl: #fafafa;
+            --silk: #f5f5f0;
+            --smoke: #e5e5e5;
+            --steel: #737373;
+            --shadow: rgba(10, 22, 40, 0.1);
+            --glass: rgba(250, 250, 250, 0.95);
+            --emerald: #50c878;
+            --ruby: #e0115f;
+            --sapphire: #0f52ba;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--pearl) 0%, var(--silk) 100%);
+            color: var(--midnight);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            padding-bottom: 80px; /* Space for nav bar */
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: var(--midnight);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Transizione certa per iOS */
+        .preloader {
+            transition: opacity .4s ease;
+        }
+
+        .logo-animation {
+            width: 120px;
+            height: 120px;
+            position: relative;
+        }
+
+        .logo-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--champagne);
+            border-radius: 50%;
+            opacity: 0;
+            animation: ringPulse 2s infinite;
+        }
+
+        .logo-ring:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .logo-ring:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes ringPulse {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Header */
+        header {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--midnight);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .brand span {
+            color: var(--champagne);
+            font-weight: 400;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            border-top: 1px solid var(--smoke);
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--steel);
+            position: relative;
+        }
+
+        .nav-item.active {
+            color: var(--champagne);
+        }
+
+        .nav-item:active {
+            transform: scale(0.95);
+        }
+
+        .nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+            transition: transform 0.3s;
+        }
+
+        .nav-item:hover .nav-icon {
+            transform: translateY(-2px);
+        }
+
+        .nav-label {
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            animation: pageIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1), transparent 50%);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 40px 20px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 7vw, 56px);
+            font-weight: 400;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-weight: 300;
+            font-size: clamp(14px, 3vw, 18px);
+            color: rgba(10, 22, 40, 0.7);
+            margin-bottom: 24px;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 24px 0;
+        }
+
+        .quick-btn {
+            background: linear-gradient(135deg, var(--champagne), #b8941f);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .quick-btn.secondary {
+            background: white;
+            color: var(--midnight);
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        /* Service Cards */
+        .services-grid {
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px 16px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            box-shadow: 0 5px 20px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--champagne), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+
+        .service-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(10, 22, 40, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 12px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .service-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--midnight);
+        }
+
+        .service-desc {
+            font-size: 12px;
+            font-weight: 300;
+            color: var(--steel);
+            line-height: 1.4;
+        }
+
+        /* Promo Timer */
+        .promo-banner {
+            background: linear-gradient(135deg, var(--ruby), #c0105f);
+            color: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(224, 17, 95, 0.3);
+        }
+
+        .promo-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .promo-timer {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .timer-block {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 16px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timer-number {
+            font-size: 28px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .timer-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* Fortune Wheel */
+        .wheel-container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px var(--shadow);
+        }
+
+        .wheel-wrapper {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px;
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                var(--champagne) 0deg 60deg,
+                var(--midnight) 60deg 120deg,
+                var(--champagne) 120deg 180deg,
+                var(--midnight) 180deg 240deg,
+                var(--champagne) 240deg 300deg,
+                var(--midnight) 300deg 360deg
+            );
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+        }
+
+        .wheel-prizes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .prize-text {
+            position: absolute;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            transform-origin: center;
+            width: 80px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--midnight);
+            z-index: 10;
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid var(--champagne);
+            filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.3));
+            z-index: 11;
+        }
+
+        .spin-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--midnight), #1a2c48);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .spin-button:hover:not(:disabled) {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(10, 22, 40, 0.3);
+        }
+
+        .spin-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 22, 40, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal.active {
+            display: flex;
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 30px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: modalSlideUp 0.4s;
+        }
+
+        @keyframes modalSlideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--silk);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 20px;
+            color: var(--midnight);
+        }
+
+        .modal-close:hover {
+            background: var(--champagne);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* Store Info Card */
+        .store-info {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+
+        .store-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--midnight);
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--smoke);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: var(--steel);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: var(--midnight);
+            font-weight: 500;
+        }
+
+        .info-value a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info-value a:hover {
+            color: var(--champagne);
+        }
+
+        /* Guide Section */
+        .guides-container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .guide-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .guide-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 30px var(--shadow);
+        }
+
+        .guide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .guide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--midnight);
+        }
+
+        .guide-icon {
+            font-size: 24px;
+            color: var(--champagne);
+            transition: transform 0.3s;
+        }
+
+        .guide-card:hover .guide-icon {
+            transform: rotate(45deg);
+        }
+
+        .guide-content {
+            display: none;
+            padding-top: 16px;
+            border-top: 1px solid var(--smoke);
+            animation: slideDown 0.3s;
+        }
+
+        .guide-content.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .guide-text {
+            color: var(--steel);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .guide-tip {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.1));
+            padding: 16px;
+            border-radius: 12px;
+            border-left: 3px solid var(--champagne);
+            margin-top: 16px;
+        }
+
+        .guide-tip-title {
+            font-weight: 600;
+            color: var(--midnight);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 5px 20px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 80px;
+            color: rgba(212, 175, 55, 0.1);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--midnight);
+        }
+
+        .review-rating {
+            color: var(--champagne);
+            font-size: 14px;
+        }
+
+        .review-text {
+            color: var(--steel);
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .review-date {
+            font-size: 12px;
+            color: rgba(10, 22, 40, 0.4);
+        }
+
+        .review-cta {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--champagne), #b8941f);
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s;
+        }
+
+        .review-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--midnight);
+            color: white;
+            padding: 40px 20px 100px; /* Extra padding for bottom nav */
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .footer-link {
+            color: var(--champagne);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Install Prompt */
+        .install-prompt {
+            position: fixed;
+            bottom: 90px; /* Above bottom nav */
+            left: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 998;
+            transform: translateY(200%);
+        }
+
+        .install-prompt.show {
+            transform: translateY(0);
+        }
+
+        .install-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .install-text {
+            flex: 1;
+        }
+
+        .install-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            margin-bottom: 4px;
+            color: var(--midnight);
+        }
+
+        .install-desc {
+            font-size: 14px;
+            color: var(--steel);
+        }
+
+        .install-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .install-button {
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .install-button.primary {
+            background: var(--champagne);
+            color: white;
+        }
+
+        .install-button.secondary {
+            background: var(--silk);
+            color: var(--midnight);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .promo-timer {
+                gap: 8px;
+            }
+            
+            .timer-block {
+                padding: 8px 12px;
+            }
+            
+            .timer-number {
+                font-size: 20px;
+            }
+            
+            .wheel-wrapper {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .prize-text {
+                font-size: 9px;
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="logo-animation">
+            <div class="logo-ring"></div>
+            <div class="logo-ring"></div>
+            <div class="logo-ring"></div>
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--champagne); font-family: 'Playfair Display', serif; font-size: 32px;">S&V</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="#home" class="brand" onclick="navigateTo('home')">Salmoiraghi <span>&</span> Viganò</a>
+        </div>
+    </header>
+
+    <!-- HOME PAGE -->
+    <div id="home-page" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">La tua vista,<br>la nostra passione</h1>
+                <p class="hero-subtitle">Boutique Cesano Boscone • Le Porte di Milano</p>
+                <div class="quick-actions">
+                    <a href="tel:+390245862417" class="quick-btn">
+                        📞 Chiama
+                    </a>
+                    <a href="https://wa.me/390245862417?text=Salve,%20vorrei%20informazioni%20sui%20vostri%20servizi" target="_blank" class="quick-btn secondary">
+                        💬 WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="promo-banner">
+            <h2 class="promo-title">🎁 Offerta del Giorno</h2>
+            <p style="margin-bottom: 16px;">Seconda coppia al 50% di sconto!</p>
+            <div class="promo-timer">
+                <div class="timer-block">
+                    <span class="timer-number" id="timer-hours">24</span>
+                    <span class="timer-label">Ore</span>
+                </div>
+                <div class="timer-block">
+                    <span class="timer-number" id="timer-minutes">00</span>
+                    <span class="timer-label">Min</span>
+                </div>
+                <div class="timer-block">
+                    <span class="timer-number" id="timer-seconds">00</span>
+                    <span class="timer-label">Sec</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card" onclick="navigateTo('prenota')">
+                <div class="service-icon">📅</div>
+                <h3 class="service-title">Prenota</h3>
+                <p class="service-desc">Visita oculistica o consulenza</p>
+            </div>
+            
+            <div class="service-card" onclick="navigateTo('clubete')">
+                <div class="service-icon">💎</div>
+                <h3 class="service-title">Club &Te</h3>
+                <p class="service-desc">3 occhiali in 3 anni da 20€/mese</p>
+            </div>
+            
+            <div class="service-card" onclick="navigateTo('fortune')">
+                <div class="service-icon">🎁</div>
+                <h3 class="service-title">Premi</h3>
+                <p class="service-desc">Scopri le offerte del giorno</p>
+            </div>
+            
+            <div class="service-card" onclick="window.open('https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6', '_blank')">
+                <div class="service-icon">📍</div>
+                <h3 class="service-title">Dove Siamo</h3>
+                <p class="service-desc">Indicazioni stradali</p>
+            </div>
+            
+            <div class="service-card" onclick="window.open('https://g.page/r/CYXFRNPfaJnwEBM/review', '_blank')">
+                <div class="service-icon">⭐</div>
+                <h3 class="service-title">Recensioni</h3>
+                <p class="service-desc">4.8/5 su Google</p>
+            </div>
+            
+            <div class="service-card" onclick="navigateTo('guide')">
+                <div class="service-icon">💡</div>
+                <h3 class="service-title">Guide</h3>
+                <p class="service-desc">Consigli per la vista</p>
+            </div>
+            
+            <div class="service-card" onclick="navigateTo('negozio')">
+                <div class="service-icon">🏪</div>
+                <h3 class="service-title">Il Negozio</h3>
+                <p class="service-desc">Orari e contatti</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRENOTA PAGE -->
+    <div id="prenota-page" class="page">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Prenota la tua visita</h1>
+                <p class="hero-subtitle">Scegli il servizio più adatto a te</p>
+            </div>
+        </div>
+
+        <div class="services-grid" style="max-width: 600px; margin: 0 auto;">
+            <div class="service-card" onclick="bookAppointment('Controllo Vista')">
+                <div class="service-icon">👁️</div>
+                <h3 class="service-title">Controllo Vista</h3>
+                <p class="service-desc">Esame completo della vista</p>
+            </div>
+            
+            <div class="service-card" onclick="bookAppointment('Scelta Montature')">
+                <div class="service-icon">👓</div>
+                <h3 class="service-title">Scelta Montature</h3>
+                <p class="service-desc">Consulenza personalizzata</p>
+            </div>
+            
+            <div class="service-card" onclick="bookAppointment('Lenti a Contatto')">
+                <div class="service-icon">👁️‍🗨️</div>
+                <h3 class="service-title">Lenti a Contatto</h3>
+                <p class="service-desc">Applicazione e training</p>
+            </div>
+            
+            <div class="service-card" onclick="bookAppointment('Ritiro Occhiali')">
+                <div class="service-icon">📦</div>
+                <h3 class="service-title">Ritiro Occhiali</h3>
+                <p class="service-desc">Ritira il tuo ordine</p>
+            </div>
+            
+            <div class="service-card" onclick="bookAppointment('Assistenza')">
+                <div class="service-icon">🔧</div>
+                <h3 class="service-title">Assistenza</h3>
+                <p class="service-desc">Riparazioni e regolazioni</p>
+            </div>
+            
+            <div class="service-card" onclick="bookAppointment('Consulenza Sole')">
+                <div class="service-icon">🕶️</div>
+                <h3 class="service-title">Occhiali Sole</h3>
+                <p class="service-desc">Protezione e stile</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 40px 20px;">
+            <p style="color: var(--steel); margin-bottom: 20px;">Preferisci parlare con noi?</p>
+            <div class="quick-actions">
+                <a href="tel:+390245862417" class="quick-btn">📞 Chiama Ora</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLUB &TE PAGE -->
+    <div id="clubete-page" class="page">
+        <div class="hero" style="background: linear-gradient(135deg, var(--midnight), #1a2c48); color: white;">
+            <div class="hero-content">
+                <h1 class="hero-title" style="color: white;">Club <span style="color: var(--champagne);">&Te</span></h1>
+                <p class="hero-subtitle" style="color: rgba(255, 255, 255, 0.9);">Semplice, flessibile, senza pensieri</p>
+                <div style="background: var(--champagne); color: var(--midnight); padding: 12px 24px; border-radius: 30px; display: inline-block; margin-top: 20px; font-weight: 600;">
+                    Da solo 20€ al mese
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 30px 20px; margin: 20px; border-radius: 20px; box-shadow: 0 10px 40px var(--shadow);">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 28px; text-align: center; margin-bottom: 30px;">
+                3 occhiali in 3 anni, <span style="color: var(--champagne);">quando vuoi tu</span>
+            </h2>
+            
+            <div style="display: grid; gap: 20px; margin-bottom: 30px;">
+                <div style="display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--silk); border-radius: 15px;">
+                    <div style="font-size: 32px;">🎯</div>
+                    <div>
+                        <h3 style="color: var(--midnight); margin-bottom: 4px;">Subito 2 occhiali!</h3>
+                        <p style="color: var(--steel); font-size: 14px;">Puoi fare anche tutti e 3 gli occhiali insieme, subito al momento dell'iscrizione</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--silk); border-radius: 15px;">
+                    <div style="font-size: 32px;">💰</div>
+                    <div>
+                        <h3 style="color: var(--midnight); margin-bottom: 4px;">Paghi a rate mensili</h3>
+                        <p style="color: var(--steel); font-size: 14px;">Solo 20€/mese per lenti monofocali, 35€/mese per progressive</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--silk); border-radius: 15px;">
+                    <div style="font-size: 32px;">🛡️</div>
+                    <div>
+                        <h3 style="color: var(--midnight); margin-bottom: 4px;">Garanzia Senza Pensieri</h3>
+                        <p style="color: var(--steel); font-size: 14px;">Copertura 100% da rottura, furto, smarrimento o cambio gradazione</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--silk); border-radius: 15px;">
+                    <div style="font-size: 32px;">👓</div>
+                    <div>
+                        <h3 style="color: var(--midnight); margin-bottom: 4px;">Ampia scelta di brand</h3>
+                        <p style="color: var(--steel); font-size: 14px;">Ray-Ban, Oakley, Prada, Versace e tanti altri marchi prestigiosi</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="https://wa.me/390245862417?text=Vorrei%20informazioni%20sul%20Club%20%26Te" target="_blank" class="quick-btn" style="font-size: 16px; padding: 16px 32px;">
+                    💬 Iscriviti in Negozio
+                </a>
+            </div>
+        </div>
+
+        <!-- Piani disponibili -->
+        <div style="padding: 0 20px; margin-bottom: 40px;">
+            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px;">I nostri piani</h2>
+            
+            <div style="display: grid; gap: 20px; max-width: 800px; margin: 0 auto;">
+                <!-- Piano Essential -->
+                <div style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px var(--shadow); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--champagne);"></div>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 10px;">Essential</h3>
+                    <div style="font-size: 32px; font-weight: 700; color: var(--champagne); margin-bottom: 20px;">20€<span style="font-size: 16px; color: var(--steel);">/mese</span></div>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; color: var(--steel);">✓ 3 occhiali con lenti monofocali</li>
+                        <li style="padding: 8px 0; color: var(--steel);">✓ Vista o sole graduato</li>
+                        <li style="padding: 8px 0; color: var(--steel);">✓ Garanzia completa inclusa</li>
+                        <li style="padding: 8px 0; color: var(--steel);">✓ Possibilità lenti a contatto</li>
+                        <li style="padding: 8px 0; color: var(--steel);">✓ Customer service dedicato</li>
+                    </ul>
+                </div>
+
+                <!-- Piano Premium -->
+                <div style="background: linear-gradient(135deg, var(--midnight), #1a2c48); color: white; border-radius: 20px; padding: 30px; box-shadow: 0 15px 40px rgba(10, 22, 40, 0.3); position: relative;">
+                    <div style="position: absolute; top: 20px; right: 20px; background: var(--champagne); color: var(--midnight); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600;">PIÙ SCELTO</div>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 10px;">Progressive</h3>
+                    <div style="font-size: 32px; font-weight: 700; color: var(--champagne); margin-bottom: 20px;">35€<span style="font-size: 16px; color: rgba(255, 255, 255, 0.7);">/mese</span></div>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; color: rgba(255, 255, 255, 0.9);">✓ 3 occhiali con lenti progressive</li>
+                        <li style="padding: 8px 0; color: rgba(255, 255, 255, 0.9);">✓ Tecnologia avanzata anti-fatica</li>
+                        <li style="padding: 8px 0; color: rgba(255, 255, 255, 0.9);">✓ Trattamenti premium inclusi</li>
+                        <li style="padding: 8px 0; color: rgba(255, 255, 255, 0.9);">✓ Montature di alta gamma</li>
+                        <li style="padding: 8px 0; color: rgba(255, 255, 255, 0.9);">✓ Servizio revisione gratuito</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vantaggi esclusivi -->
+        <div style="background: var(--silk); padding: 40px 20px; margin-bottom: 40px;">
+            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px;">Vantaggi esclusivi membri Club</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 800px; margin: 0 auto;">
+                <div style="text-align: center;">
+                    <div style="font-size: 40px; margin-bottom: 10px;">🎁</div>
+                    <h4 style="color: var(--midnight); margin-bottom: 8px;">Sconto 30%</h4>
+                    <p style="color: var(--steel); font-size: 14px;">Su tutte le lenti a contatto</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 40px; margin-bottom: 10px;">🕶️</div>
+                    <h4 style="color: var(--midnight); margin-bottom: 8px;">Extra 10%</h4>
+                    <p style="color: var(--steel); font-size: 14px;">Su occhiali sole non graduati</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 40px; margin-bottom: 10px;">🔧</div>
+                    <h4 style="color: var(--midnight); margin-bottom: 8px;">Revisione Free</h4>
+                    <p style="color: var(--steel); font-size: 14px;">Manutenzione professionale</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 40px; margin-bottom: 10px;">⭐</div>
+                    <h4 style="color: var(--midnight); margin-bottom: 8px;">Priorità VIP</h4>
+                    <p style="color: var(--steel); font-size: 14px;">Servizio clienti dedicato</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div style="padding: 0 20px; margin-bottom: 40px; max-width: 800px; margin: 0 auto;">
+            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px;">Domande frequenti</h2>
+            
+            <div class="guide-card" onclick="toggleGuide(this)">
+                <div class="guide-header">
+                    <h3 class="guide-title">Posso fare subito 2 o 3 occhiali?</h3>
+                    <span class="guide-icon">+</span>
+                </div>
+                <div class="guide-content">
+                    <p class="guide-text"><strong>Sì, assolutamente!</strong> Puoi scegliere di fare tutti e 3 gli occhiali subito al momento dell'iscrizione, oppure 2 subito e 1 dopo, o distribuirli come preferisci nei 3 anni. La flessibilità totale è uno dei vantaggi del Club &Te!</p>
+                </div>
+            </div>
+
+            <div class="guide-card" onclick="toggleGuide(this)">
+                <div class="guide-header">
+                    <h3 class="guide-title">Quali marchi sono inclusi?</h3>
+                    <span class="guide-icon">+</span>
+                </div>
+                <div class="guide-content">
+                    <p class="guide-text">Hai accesso a un'ampia selezione di brand prestigiosi tra cui Ray-Ban, Oakley, Prada, Versace, Dolce & Gabbana, Armani e molti altri. Le collezioni vengono rinnovate più volte l'anno per offrirti sempre le ultime tendenze.</p>
+                </div>
+            </div>
+
+            <div class="guide-card" onclick="toggleGuide(this)">
+                <div class="guide-header">
+                    <h3 class="guide-title">Come funziona la garanzia?</h3>
+                    <span class="guide-icon">+</span>
+                </div>
+                <div class="guide-content">
+                    <p class="guide-text">La Garanzia Senza Pensieri copre il 100% in caso di rottura, furto, smarrimento o cambio gradazione. Se succede qualcosa ai tuoi occhiali, vieni in negozio e ne ordiniamo subito un paio nuovo identico, completamente gratis!</p>
+                </div>
+            </div>
+
+            <div class="guide-card" onclick="toggleGuide(this)">
+                <div class="guide-header">
+                    <h3 class="guide-title">Posso disdire quando voglio?</h3>
+                    <span class="guide-icon">+</span>
+                </div>
+                <div class="guide-content">
+                    <p class="guide-text">Il Club ha una durata di 36 mesi con pagamento mensile. Se non utilizzi tutti e 3 gli occhiali entro i 3 anni, riceverai voucher del valore residuo utilizzabili su qualsiasi prodotto in negozio.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Finale -->
+        <div style="background: linear-gradient(135deg, var(--champagne), #b8941f); padding: 40px 20px; text-align: center; color: white;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 16px;">Inizia oggi il tuo Club &Te</h2>
+            <p style="font-size: 18px; margin-bottom: 30px; opacity: 0.95;">Vieni in negozio e scopri tutti i vantaggi</p>
+            <div class="quick-actions">
+                <a href="tel:+390245862417" class="quick-btn secondary" style="background: white; color: var(--midnight);">
+                    📞 Chiama ora
+                </a>
+                <a href="https://wa.me/390245862417?text=Vorrei%20iscrivermi%20al%20Club%20%26Te" target="_blank" class="quick-btn secondary" style="background: var(--midnight); color: white;">
+                    💬 Scrivici
+                </a>
+            </div>
+            <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">Via Don Sturzo - CC Le Porte di Milano - Cesano Boscone</p>
+        </div>
+    </div>
+
+    <!-- FORTUNE WHEEL PAGE -->
+    <div id="fortune-page" class="page">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Ruota dei <span style="color: var(--champagne);">Premi</span></h1>
+                <p class="hero-subtitle">Tenta la fortuna per sconti esclusivi!</p>
+            </div>
+        </div>
+
+        <div class="wheel-container">
+            <div class="wheel-wrapper">
+                <div class="wheel-pointer"></div>
+                <div class="wheel" id="wheel">
+                    <div class="wheel-prizes">
+                        <div class="prize-text" style="top: 20%; left: 65%; transform: rotate(30deg);">20% SOLE</div>
+                        <div class="prize-text" style="top: 35%; left: 75%; transform: rotate(90deg);">50% LENTI</div>
+                        <div class="prize-text" style="top: 65%; left: 75%; transform: rotate(150deg);">€50 VISTA</div>
+                        <div class="prize-text" style="top: 80%; left: 65%; transform: rotate(210deg);">RIPROVA</div>
+                        <div class="prize-text" style="top: 65%; left: 25%; transform: rotate(270deg);">50% VISTA</div>
+                        <div class="prize-text" style="top: 35%; left: 15%; transform: rotate(330deg);">RIPROVA</div>
+                    </div>
+                    <div class="wheel-center">S&V</div>
+                </div>
+            </div>
+            <button class="spin-button" onclick="spinWheel()">GIRA LA RUOTA</button>
+        </div>
+
+        <div style="text-align: center; padding: 0 20px; color: var(--steel); font-size: 14px;">
+            <p>🎯 Un tentativo al giorno</p>
+            <p>🎁 Mostra il codice in negozio</p>
+            <p>⏰ Valido per 7 giorni</p>
+        </div>
+    </div>
+
+    <!-- GUIDE PAGE -->
+    <div id="guide-page" class="page">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Guide Esclusive</h1>
+                <p class="hero-subtitle">Consigli professionali per la tua vista</p>
+            </div>
+        </div>
+
+        <div class="guides-container">
+            <div class="guide-card" onclick="toggleGuide(this)">
+                <div class="guide-header">
+                    <h3 class="guide-title">Come Pulire le Lenti</h3>
+                    <span class="guide-icon">+</span>
+                </div>
+                <div class="guide-content">
+                    <p class="guide-text">La pulizia corretta delle lenti è essenziale per mantenere una visione nitida e prolungare la vita dei tuoi occhiali.</p>
+                    <div class="guide-tip">
+                        <div class="guide-tip-title">💡 Procedura Corretta:</div>
+                        <ol style="margin-left: 20px; color: var(--steel);">
+                            <li>Sciacqua con acqua tiepida</li>
+                            <li>Applica una goccia di sapone neutro</li>
+                            <li>Strofina delicatamente con i polpastrelli</li>
+                            <li>Risciacqua abbondantemente</li>
+                            <li>Asciuga con panno in microfibra</li>
+                        </ol>
+                    </div>
+                    <p class="guide-text" style="margin-top: 16px;">⚠️ <strong>Evita:</strong> tessuti ruvidi, carta, alcool, acetone</p>
+                </div>
+            </div>
+
+            <div class="guide-card" onclick="toggleGuide(this)">
+                <div class="guide-header">
+                    <h3 class="guide-title">Scegliere la Montatura Giusta</h3>
+                    <span class="guide-icon">+</span>
+                </div>
+                <div class="guide-content">
+                    <p class="guide-text">La montatura perfetta valorizza il tuo viso e riflette la tua personalità.</p>
+                    <div class="guide-tip">
+                        <div class="guide-tip-title">👤 Per Forma del Viso:</div>
+                        <ul style="margin-left: 20px; color: var(--steel);">
+                            <li><strong>Ovale:</strong> Quasi tutte le forme</li>
+                            <li><strong>Rotondo:</strong> Montature squadrate o rettangolari</li>
+                            <li><strong>Quadrato:</strong> Forme tonde o ovali</li>
+                            <li><strong>Triangolare:</strong> Cat-eye o montature larghe in alto</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-card" onclick="toggleGuide(this)">
+                <div class="guide-header">
+                    <h3 class="guide-title">Protezione UV</h3>
+                    <span class="guide-icon">+</span>
+                </div>
+                <div class="guide-content">
+                    <p class="guide-text">La protezione dai raggi UV è fondamentale per la salute dei tuoi occhi.</p>
+                    <div class="guide-tip">
+                        <div class="guide-tip-title">🕶️ Cosa Cercare:</div>
+                        <ul style="margin-left: 20px; color: var(--steel);">
+                            <li>Protezione UV400 (blocca il 100% dei raggi UV)</li>
+                            <li>Lenti polarizzate per ridurre i riflessi</li>
+                            <li>Categoria 3 per sole intenso</li>
+                            <li>Marchio CE per conformità europea</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-card" onclick="toggleGuide(this)">
+                <div class="guide-header">
+                    <h3 class="guide-title">Manutenzione Occhiali</h3>
+                    <span class="guide-icon">+</span>
+                </div>
+                <div class="guide-content">
+                    <p class="guide-text">Una corretta manutenzione garantisce comfort e durata nel tempo.</p>
+                    <div class="guide-tip">
+                        <div class="guide-tip-title">🔧 Controlli Periodici:</div>
+                        <ul style="margin-left: 20px; color: var(--steel);">
+                            <li>Viti delle cerniere: stringere ogni 2 mesi</li>
+                            <li>Naselli: pulire settimanalmente</li>
+                            <li>Astine: verificare l'allineamento</li>
+                            <li>Controllo professionale: ogni 6 mesi</li>
+                        </ul>
+                    </div>
+                    <p class="guide-text" style="margin-top: 16px;">Passa in negozio per un controllo gratuito!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEGOZIO PAGE -->
+    <div id="negozio-page" class="page">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Il Nostro Negozio</h1>
+                <p class="hero-subtitle">Esperienza e professionalità dal 1865</p>
+            </div>
+        </div>
+
+        <div class="store-info">
+            <h2>Informazioni & Contatti</h2>
+            
+            <div class="info-row">
+                <div class="info-icon">📍</div>
+                <div class="info-text">
+                    <div class="info-label">Indirizzo</div>
+                    <div class="info-value">
+                        <a href="https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6" target="_blank">
+                            Via Don Sturzo<br>
+                            CC Le Porte di Milano<br>
+                            20090 Cesano Boscone (MI)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-icon">📞</div>
+                <div class="info-text">
+                    <div class="info-label">Telefono</div>
+                    <div class="info-value">
+                        <a href="tel:+390245862417">02 4586 2417</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-icon">💬</div>
+                <div class="info-text">
+                    <div class="info-label">WhatsApp Business</div>
+                    <div class="info-value">
+                        <a href="https://wa.me/390245862417?text=Salve,%20vorrei%20informazioni" target="_blank">
+                            Chat con noi
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-icon">✉️</div>
+                <div class="info-text">
+                    <div class="info-label">Email</div>
+                    <div class="info-value">
+                        <a href="mailto:mi835@luxottica.com">Invia email</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-icon">🕐</div>
+                <div class="info-text">
+                    <div class="info-label">Orari</div>
+                    <div class="info-value">
+                        Lun-Sab: 9:00 - 20:00<br>
+                        Domenica: 10:00 - 20:00
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-icon">⭐</div>
+                <div class="info-text">
+                    <div class="info-label">Recensioni Google</div>
+                    <div class="info-value">
+                        <a href="https://g.page/r/CYXFRNPfaJnwEBM/review" target="_blank">
+                            4.8/5 ⭐ Leggi le recensioni
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="reviews-section">
+            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px;">Cosa dicono i nostri clienti</h2>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-author">Maria R.</span>
+                    <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="review-text">"Servizio impeccabile! Il personale è estremamente competente e mi ha aiutato a scegliere la montatura perfetta. Tornerò sicuramente."</p>
+                <span class="review-date">2 settimane fa</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-author">Giuseppe L.</span>
+                    <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="review-text">"Professionalità e cortesia. Ho trovato esattamente quello che cercavo e i prezzi sono molto competitivi."</p>
+                <span class="review-date">1 mese fa</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-author">Francesca M.</span>
+                    <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="review-text">"Ottima esperienza! Personale qualificato e grande assortimento di montature di marca."</p>
+                <span class="review-date">1 mese fa</span>
+            </div>
+
+            <a href="https://g.page/r/CYXFRNPfaJnwEBM/review" target="_blank" class="review-cta">
+                ✍️ Lascia la tua recensione
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">Salmoiraghi & Viganò</div>
+            <p class="footer-text">
+                L'eccellenza della vista dal 1865<br>
+                La tua boutique di fiducia
+            </p>
+            <p class="footer-text">
+                <a href="https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6" target="_blank" class="footer-link">
+                    📍 Vieni a trovarci
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#home" class="nav-item active" onclick="navigateTo('home'); return false;">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="#prenota" class="nav-item" onclick="navigateTo('prenota'); return false;">
+            <span class="nav-icon">📅</span>
+            <span class="nav-label">Prenota</span>
+        </a>
+        <a href="#fortune" class="nav-item" onclick="navigateTo('fortune'); return false;">
+            <span class="nav-icon">🎁</span>
+            <span class="nav-label">Premi</span>
+        </a>
+        <a href="#guide" class="nav-item" onclick="navigateTo('guide'); return false;">
+            <span class="nav-icon">💡</span>
+            <span class="nav-label">Guide</span>
+        </a>
+        <a href="#negozio" class="nav-item" onclick="navigateTo('negozio'); return false;">
+            <span class="nav-icon">🏪</span>
+            <span class="nav-label">Info</span>
+        </a>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Install Prompt -->
+    <div class="install-prompt" id="install-prompt">
+        <div class="install-content">
+            <div class="install-text">
+                <div class="install-title">Installa S&V App</div>
+                <div class="install-desc">Accesso rapido alla tua boutique</div>
+            </div>
+            <div class="install-buttons">
+                <button class="install-button primary" onclick="installApp()">Installa</button>
+                <button class="install-button secondary" onclick="hideInstallPrompt()">Dopo</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation
+        const pages = {
+            'home': 'home-page',
+            'prenota': 'prenota-page',
+            'clubete': 'clubete-page',
+            'fortune': 'fortune-page',
+            'guide': 'guide-page',
+            'negozio': 'negozio-page'
+        };
+
+        // PRELOADER PATCH - iOS SAFE
+        // Utility sicura
+        function hidePreloader(hard=false) {
+            const p = document.getElementById('preloader');
+            if (!p) return;
+            p.classList.add('hidden');
+            // su iOS a volte l'opacity rimane ma la view è ancora "cliccabile":
+            // dopo la transizione, rimuoviamolo dal flow
+            const cleanup = () => { p.style.display = 'none'; };
+            p.addEventListener('transitionend', cleanup, { once: true });
+            if (hard) cleanup(); // rimozione immediata se servisse
+        }
+
+        // 1) togli preloader appena il DOM è pronto (non aspettiamo le risorse)
+        document.addEventListener('DOMContentLoaded', () => {
+            // piccolo delay solo per vedere l'animazione
+            setTimeout(() => hidePreloader(), 800);
+        });
+
+        // 2) fail-safe assoluto: dopo 4s togli comunque
+        setTimeout(() => hidePreloader(true), 4000);
+
+        // 3) se già in "standalone" (icona iOS) togli subito
+        if (window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches) {
+            hidePreloader();
+        }
+
+        function navigateTo(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            const pageId = pages[pageName];
+            if (pageId) {
+                document.getElementById(pageId).classList.add('active');
+            }
+            
+            // Update nav active state
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + pageName) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Countdown Timer
+        function updateTimer() {
+            const endTime = new Date();
+            endTime.setHours(23, 59, 59, 999);
+            
+            const now = new Date();
+            const diff = endTime - now;
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            const hoursEl = document.getElementById('timer-hours');
+            const minutesEl = document.getElementById('timer-minutes');
+            const secondsEl = document.getElementById('timer-seconds');
+            
+            if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+            if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+            if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+        }
+        
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Book Appointment
+        function bookAppointment(service) {
+            const message = `Salve, vorrei prenotare: ${service}`;
+            const phoneNumber = '390245862417';
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Toggle Guide
+        function toggleGuide(card) {
+            const content = card.querySelector('.guide-content');
+            const icon = card.querySelector('.guide-icon');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                // Close other guides
+                document.querySelectorAll('.guide-content').forEach(c => {
+                    c.classList.remove('active');
+                });
+                document.querySelectorAll('.guide-icon').forEach(i => {
+                    i.textContent = '+';
+                });
+                
+                content.classList.add('active');
+                icon.textContent = '−';
+            }
+        }
+
+        // Spin Wheel
+        let isSpinning = false;
+        let lastSpinDate = localStorage.getItem('lastSpinDate');
+        
+        function canSpin() {
+            const today = new Date().toDateString();
+            return lastSpinDate !== today;
+        }
+
+        function spinWheel() {
+            if (isSpinning) return;
+            
+            if (!canSpin()) {
+                showModal('⏰', 'Torna domani!', 'Hai già girato la ruota oggi. Ritorna domani per un nuovo tentativo!');
+                return;
+            }
+            
+            isSpinning = true;
+            const wheel = document.getElementById('wheel');
+            const spinButton = document.querySelector('.spin-button');
+            
+            spinButton.disabled = true;
+            
+            // Prize distribution with weighted probabilities
+            const prizePool = [];
+            
+            // 50% chance: 20% occhiale da sole (position 30°)
+            for(let i = 0; i < 50; i++) {
+                prizePool.push({ text: '20% occhiale da sole', angle: 30 });
+            }
+            
+            // 20% chance: 50% lenti a contatto (position 90°)
+            for(let i = 0; i < 20; i++) {
+                prizePool.push({ text: '50% su seconda confezione lenti a contatto', angle: 90 });
+            }
+            
+            // 20% chance: €50 extra sconto vista (position 150°)
+            for(let i = 0; i < 20; i++) {
+                prizePool.push({ text: '€50 extra sconto occhiale da vista', angle: 150 });
+            }
+            
+            // 10% chance: 50% occhiale da vista (position 270°)
+            for(let i = 0; i < 10; i++) {
+                prizePool.push({ text: '50% occhiale da vista', angle: 270 });
+            }
+            
+            // Select random prize from weighted pool
+            const selectedPrize = prizePool[Math.floor(Math.random() * prizePool.length)];
+            
+            // Calculate rotation to land on the selected prize
+            // Add multiple full rotations (5-8 spins) for effect
+            const baseRotations = (5 + Math.random() * 3) * 360;
+            // The pointer is at top, so we need to rotate to have the prize at top
+            // Since prizes are at specific angles, we rotate opposite to bring them to top
+            const finalAngle = 360 - selectedPrize.angle + 30; // +30 to center in the segment
+            const totalRotation = baseRotations + finalAngle;
+            
+            wheel.style.transform = `rotate(${totalRotation}deg)`;
+            
+            setTimeout(() => {
+                const code = 'SV' + Date.now().toString().slice(-6);
+                
+                // Always show winning message (no losing in this version)
+                showModal(
+                    '🎉',
+                    'Congratulazioni!',
+                    `<p style="font-size: 20px; margin: 20px 0;">Hai vinto:<br><strong>${selectedPrize.text}</strong></p>
+                    <div style="background: var(--silk); padding: 20px; border-radius: 15px; margin: 20px 0;">
+                        <p style="font-family: monospace; font-size: 24px; letter-spacing: 3px; color: var(--midnight);">${code}</p>
+                    </div>
+                    <p style="color: var(--steel); font-size: 14px;">Mostra questo codice in negozio<br>Valido per 7 giorni</p>
+                    <a href="https://wa.me/390245862417?text=Ho%20vinto%20il%20codice%20${code}%20per%20${encodeURIComponent(selectedPrize.text)}" target="_blank" class="quick-btn" style="margin-top: 20px;">💬 Invia su WhatsApp</a>`
+                );
+                
+                // Save spin date
+                localStorage.setItem('lastSpinDate', new Date().toDateString());
+                
+                spinButton.disabled = false;
+                isSpinning = false;
+            }, 4000);
+        }
+
+        // Modal Functions
+        function showModal(emoji, title, content) {
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="font-size: 60px; margin-bottom: 20px;">${emoji}</div>
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; color: var(--midnight); margin-bottom: 20px;">${title}</h2>
+                    ${content}
+                </div>
+            `;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        // PWA Install - Enhanced
+        let deferredPrompt;
+        let isFirstVisit = !localStorage.getItem('hasVisited');
+        
+        // Show install instructions on first visit
+        if (isFirstVisit) {
+            setTimeout(() => {
+                if (!window.matchMedia('(display-mode: standalone)').matches) {
+                    showInstallInstructions();
+                }
+                localStorage.setItem('hasVisited', 'true');
+            }, 2000);
+        }
+        
+        function showInstallInstructions() {
+            const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+            const isAndroid = /Android/.test(navigator.userAgent);
+            
+            let instructions = '';
+            
+            if (isIOS) {
+                instructions = `
+                    <div style="text-align: center;">
+                        <div style="font-size: 60px; margin-bottom: 20px;">📱</div>
+                        <h2 style="font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 20px;">Installa S&V sul tuo iPhone</h2>
+                        <div style="text-align: left; max-width: 300px; margin: 0 auto;">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="background: var(--champagne); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+                                <p>Tocca il pulsante Condividi <span style="color: var(--sapphire);">↗</span> in basso</p>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="background: var(--champagne); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+                                <p>Scorri e tocca "Aggiungi alla schermata Home" ➕</p>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="background: var(--champagne); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+                                <p>Tocca "Aggiungi" in alto a destra</p>
+                            </div>
+                        </div>
+                        <p style="color: var(--steel); font-size: 14px; margin-top: 20px;">L'icona S&V apparirà sul tuo schermo!</p>
+                    </div>
+                `;
+            } else if (isAndroid) {
+                instructions = `
+                    <div style="text-align: center;">
+                        <div style="font-size: 60px; margin-bottom: 20px;">📱</div>
+                        <h2 style="font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 20px;">Installa S&V sul tuo Android</h2>
+                        <p style="color: var(--steel); margin-bottom: 30px;">Tocca "Installa" quando appare il messaggio in basso, oppure:</p>
+                        <div style="text-align: left; max-width: 300px; margin: 0 auto;">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="background: var(--champagne); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+                                <p>Tocca i 3 puntini ⋮ in alto a destra</p>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="background: var(--champagne); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+                                <p>Seleziona "Aggiungi a schermata Home"</p>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="background: var(--champagne); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+                                <p>Conferma toccando "Aggiungi"</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                instructions = `
+                    <div style="text-align: center;">
+                        <div style="font-size: 60px; margin-bottom: 20px;">💻</div>
+                        <h2 style="font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 20px;">Salva S&V Boutique</h2>
+                        <p style="color: var(--steel);">Aggiungi questa pagina ai preferiti per accesso rapido</p>
+                        <p style="margin-top: 20px;">Premi <strong>Ctrl+D</strong> (Windows) o <strong>Cmd+D</strong> (Mac)</p>
+                    </div>
+                `;
+            }
+            
+            showModal('', '', instructions + `
+                <button class="quick-btn" style="margin-top: 30px; width: 100%;" onclick="closeModal()">Ho capito!</button>
+            `);
+        }
+        
+        // Check if app is already installed
+        function isAppInstalled() {
+            return window.matchMedia('(display-mode: standalone)').matches || 
+                   window.navigator.standalone === true;
+        }
+        
+        // Auto-prompt for Android
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show install prompt immediately for new users
+            if (isFirstVisit && !isAppInstalled()) {
+                setTimeout(() => {
+                    document.getElementById('install-prompt').classList.add('show');
+                }, 3000);
+            }
+        });
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('App installed');
+                        // Track installation
+                        localStorage.setItem('appInstalled', 'true');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+            hideInstallPrompt();
+        }
+
+        function hideInstallPrompt() {
+            document.getElementById('install-prompt').classList.remove('show');
+        }
+
+        // Service Worker rimosso - non necessario per questa PWA
+
+        // Handle back button
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.page) {
+                navigateTo(event.state.page);
+            }
+        });
+
+        // Save navigation state
+        function pushState(pageName) {
+            history.pushState({page: pageName}, '', '#' + pageName);
+        }
+
+        // Logger d'emergenza per errori JS
+        window.onerror = function (msg, src, line, col, err) {
+            // Mostra un avviso "tecnico" solo a te quando testi
+            console.log('JS Error:', msg, src, line, col, err);
+            // togli comunque il preloader per non bloccare l'utente
+            const p = document.getElementById('preloader');
+            if (p) { 
+                p.classList.add('hidden'); 
+                p.style.display='none'; 
+            }
+        };
+    </script>
+</body>
+</html>
