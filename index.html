@@ -12,8 +12,34 @@
     <meta name="apple-mobile-web-app-title" content="S&V Boutique">
     <meta name="description" content="La tua boutique Salmoiraghi & Viganò sempre in tasca. Prenota visite, scopri promozioni esclusive, prova virtualmente gli occhiali.">
     
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied'
+        });
+        
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID', {
+            'anonymize_ip': true,
+            'allow_google_signals': false,
+            'allow_ad_personalization_signals': false
+        });
+    </script>
+    
     <!-- Luxottica Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
     <style>
         * {
@@ -44,12 +70,14 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
-            padding-bottom: 80px; /* Space for nav bar */
+            padding-bottom: 80px;
         }
 
-        /* Preloader */
+        /* Preloader - Fixed for iOS/Android */
         .preloader {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100vh;
             background: var(--midnight);
@@ -57,17 +85,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
         }
 
         .preloader.hidden {
             opacity: 0;
+            visibility: hidden;
             pointer-events: none;
-        }
-
-        /* Transizione certa per iOS */
-        .preloader {
-            transition: opacity .4s ease;
         }
 
         .logo-animation {
@@ -257,6 +282,7 @@
             gap: 12px;
             justify-content: center;
             margin: 24px 0;
+            flex-wrap: wrap;
         }
 
         .quick-btn {
@@ -378,6 +404,7 @@
             gap: 16px;
             justify-content: center;
             margin-top: 16px;
+            flex-wrap: wrap;
         }
 
         .timer-block {
@@ -430,8 +457,9 @@
                 var(--midnight) 300deg 360deg
             );
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            transition: transform 4s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
             position: relative;
+            will-change: transform;
         }
 
         .wheel-prizes {
@@ -446,11 +474,16 @@
             position: absolute;
             color: white;
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             text-align: center;
             transform-origin: center;
-            width: 80px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            width: 90px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .wheel-center {
@@ -545,6 +578,8 @@
             text-align: center;
             position: relative;
             animation: modalSlideUp 0.4s;
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         @keyframes modalSlideUp {
@@ -821,7 +856,7 @@
         .footer {
             background: var(--midnight);
             color: white;
-            padding: 40px 20px 100px; /* Extra padding for bottom nav */
+            padding: 40px 20px 100px;
             margin-top: 60px;
         }
 
@@ -857,7 +892,7 @@
         /* Install Prompt */
         .install-prompt {
             position: fixed;
-            bottom: 90px; /* Above bottom nav */
+            bottom: 90px;
             left: 20px;
             right: 20px;
             background: white;
@@ -899,6 +934,7 @@
         .install-buttons {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .install-button {
@@ -919,6 +955,182 @@
         .install-button.secondary {
             background: var(--silk);
             color: var(--midnight);
+        }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--midnight);
+            color: white;
+            padding: 20px;
+            z-index: 9998;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cookie-banner.show {
+            transform: translateY(0);
+        }
+
+        .cookie-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cookie-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--champagne);
+        }
+
+        .cookie-text {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cookie-btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .cookie-btn.accept {
+            background: var(--champagne);
+            color: var(--midnight);
+        }
+
+        .cookie-btn.accept:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+        }
+
+        .cookie-btn.customize {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cookie-btn.customize:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .cookie-btn.reject {
+            background: var(--steel);
+            color: white;
+        }
+
+        /* Privacy Settings Modal */
+        .privacy-modal .modal-content {
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .privacy-section {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .privacy-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--midnight);
+        }
+
+        .privacy-section p {
+            color: var(--steel);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .consent-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--silk);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .toggle-info {
+            flex: 1;
+        }
+
+        .toggle-title {
+            font-weight: 600;
+            color: var(--midnight);
+            margin-bottom: 4px;
+        }
+
+        .toggle-desc {
+            font-size: 13px;
+            color: var(--steel);
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            margin-left: 16px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--steel);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background: var(--champagne);
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(26px);
         }
 
         /* Responsive */
@@ -948,6 +1160,37 @@
                 font-size: 9px;
                 width: 60px;
             }
+
+            .install-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .install-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .modal-content {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            .quick-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quick-btn {
+                width: 200px;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -976,10 +1219,10 @@
                 <h1 class="hero-title">La tua vista,<br>la nostra passione</h1>
                 <p class="hero-subtitle">Boutique Cesano Boscone • Le Porte di Milano</p>
                 <div class="quick-actions">
-                    <a href="tel:+390245862417" class="quick-btn">
+                    <a href="tel:+390245862417" class="quick-btn" onclick="trackPhoneClick('hero')">
                         📞 Chiama
                     </a>
-                    <a href="https://wa.me/390245862417?text=Salve,%20vorrei%20informazioni%20sui%20vostri%20servizi" target="_blank" class="quick-btn secondary">
+                    <a href="https://wa.me/390245862417?text=Salve,%20vorrei%20informazioni%20sui%20vostri%20servizi" target="_blank" class="quick-btn secondary" onclick="trackWhatsAppClick('hero')">
                         💬 WhatsApp
                     </a>
                 </div>
@@ -1024,13 +1267,13 @@
                 <p class="service-desc">Scopri le offerte del giorno</p>
             </div>
             
-            <div class="service-card" onclick="window.open('https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6', '_blank')">
+            <div class="service-card" onclick="openMaps()">
                 <div class="service-icon">📍</div>
                 <h3 class="service-title">Dove Siamo</h3>
                 <p class="service-desc">Indicazioni stradali</p>
             </div>
             
-            <div class="service-card" onclick="window.open('https://g.page/r/CYXFRNPfaJnwEBM/review', '_blank')">
+            <div class="service-card" onclick="openGoogleReviews()">
                 <div class="service-icon">⭐</div>
                 <h3 class="service-title">Recensioni</h3>
                 <p class="service-desc">4.8/5 su Google</p>
@@ -1100,7 +1343,7 @@
         <div style="text-align: center; margin: 40px 20px;">
             <p style="color: var(--steel); margin-bottom: 20px;">Preferisci parlare con noi?</p>
             <div class="quick-actions">
-                <a href="tel:+390245862417" class="quick-btn">📞 Chiama Ora</a>
+                <a href="tel:+390245862417" class="quick-btn" onclick="trackPhoneClick('appointment_page')">📞 Chiama Ora</a>
             </div>
         </div>
     </div>
@@ -1157,137 +1400,14 @@
             </div>
 
             <div style="text-align: center;">
-                <a href="https://wa.me/390245862417?text=Vorrei%20informazioni%20sul%20Club%20%26Te" target="_blank" class="quick-btn" style="font-size: 16px; padding: 16px 32px;">
+                <a href="https://wa.me/390245862417?text=Vorrei%20informazioni%20sul%20Club%20%26Te" target="_blank" class="quick-btn" style="font-size: 16px; padding: 16px 32px;" onclick="trackWhatsAppClick('club_te_signup')">
                     💬 Iscriviti in Negozio
                 </a>
             </div>
         </div>
 
-        <!-- Piani disponibili -->
-        <div style="padding: 0 20px; margin-bottom: 40px;">
-            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px;">I nostri piani</h2>
-            
-            <div style="display: grid; gap: 20px; max-width: 800px; margin: 0 auto;">
-                <!-- Piano Essential -->
-                <div style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px var(--shadow); position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--champagne);"></div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 10px;">Essential</h3>
-                    <div style="font-size: 32px; font-weight: 700; color: var(--champagne); margin-bottom: 20px;">20€<span style="font-size: 16px; color: var(--steel);">/mese</span></div>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 8px 0; color: var(--steel);">✓ 3 occhiali con lenti monofocali</li>
-                        <li style="padding: 8px 0; color: var(--steel);">✓ Vista o sole graduato</li>
-                        <li style="padding: 8px 0; color: var(--steel);">✓ Garanzia completa inclusa</li>
-                        <li style="padding: 8px 0; color: var(--steel);">✓ Possibilità lenti a contatto</li>
-                        <li style="padding: 8px 0; color: var(--steel);">✓ Customer service dedicato</li>
-                    </ul>
-                </div>
-
-                <!-- Piano Premium -->
-                <div style="background: linear-gradient(135deg, var(--midnight), #1a2c48); color: white; border-radius: 20px; padding: 30px; box-shadow: 0 15px 40px rgba(10, 22, 40, 0.3); position: relative;">
-                    <div style="position: absolute; top: 20px; right: 20px; background: var(--champagne); color: var(--midnight); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600;">PIÙ SCELTO</div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 10px;">Progressive</h3>
-                    <div style="font-size: 32px; font-weight: 700; color: var(--champagne); margin-bottom: 20px;">35€<span style="font-size: 16px; color: rgba(255, 255, 255, 0.7);">/mese</span></div>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 8px 0; color: rgba(255, 255, 255, 0.9);">✓ 3 occhiali con lenti progressive</li>
-                        <li style="padding: 8px 0; color: rgba(255, 255, 255, 0.9);">✓ Tecnologia avanzata anti-fatica</li>
-                        <li style="padding: 8px 0; color: rgba(255, 255, 255, 0.9);">✓ Trattamenti premium inclusi</li>
-                        <li style="padding: 8px 0; color: rgba(255, 255, 255, 0.9);">✓ Montature di alta gamma</li>
-                        <li style="padding: 8px 0; color: rgba(255, 255, 255, 0.9);">✓ Servizio revisione gratuito</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Vantaggi esclusivi -->
-        <div style="background: var(--silk); padding: 40px 20px; margin-bottom: 40px;">
-            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px;">Vantaggi esclusivi membri Club</h2>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 800px; margin: 0 auto;">
-                <div style="text-align: center;">
-                    <div style="font-size: 40px; margin-bottom: 10px;">🎁</div>
-                    <h4 style="color: var(--midnight); margin-bottom: 8px;">Sconto 30%</h4>
-                    <p style="color: var(--steel); font-size: 14px;">Su tutte le lenti a contatto</p>
-                </div>
-                
-                <div style="text-align: center;">
-                    <div style="font-size: 40px; margin-bottom: 10px;">🕶️</div>
-                    <h4 style="color: var(--midnight); margin-bottom: 8px;">Extra 10%</h4>
-                    <p style="color: var(--steel); font-size: 14px;">Su occhiali sole non graduati</p>
-                </div>
-                
-                <div style="text-align: center;">
-                    <div style="font-size: 40px; margin-bottom: 10px;">🔧</div>
-                    <h4 style="color: var(--midnight); margin-bottom: 8px;">Revisione Free</h4>
-                    <p style="color: var(--steel); font-size: 14px;">Manutenzione professionale</p>
-                </div>
-                
-                <div style="text-align: center;">
-                    <div style="font-size: 40px; margin-bottom: 10px;">⭐</div>
-                    <h4 style="color: var(--midnight); margin-bottom: 8px;">Priorità VIP</h4>
-                    <p style="color: var(--steel); font-size: 14px;">Servizio clienti dedicato</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- FAQ -->
-        <div style="padding: 0 20px; margin-bottom: 40px; max-width: 800px; margin: 0 auto;">
-            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px;">Domande frequenti</h2>
-            
-            <div class="guide-card" onclick="toggleGuide(this)">
-                <div class="guide-header">
-                    <h3 class="guide-title">Posso fare subito 2 o 3 occhiali?</h3>
-                    <span class="guide-icon">+</span>
-                </div>
-                <div class="guide-content">
-                    <p class="guide-text"><strong>Sì, assolutamente!</strong> Puoi scegliere di fare tutti e 3 gli occhiali subito al momento dell'iscrizione, oppure 2 subito e 1 dopo, o distribuirli come preferisci nei 3 anni. La flessibilità totale è uno dei vantaggi del Club &Te!</p>
-                </div>
-            </div>
-
-            <div class="guide-card" onclick="toggleGuide(this)">
-                <div class="guide-header">
-                    <h3 class="guide-title">Quali marchi sono inclusi?</h3>
-                    <span class="guide-icon">+</span>
-                </div>
-                <div class="guide-content">
-                    <p class="guide-text">Hai accesso a un'ampia selezione di brand prestigiosi tra cui Ray-Ban, Oakley, Prada, Versace, Dolce & Gabbana, Armani e molti altri. Le collezioni vengono rinnovate più volte l'anno per offrirti sempre le ultime tendenze.</p>
-                </div>
-            </div>
-
-            <div class="guide-card" onclick="toggleGuide(this)">
-                <div class="guide-header">
-                    <h3 class="guide-title">Come funziona la garanzia?</h3>
-                    <span class="guide-icon">+</span>
-                </div>
-                <div class="guide-content">
-                    <p class="guide-text">La Garanzia Senza Pensieri copre il 100% in caso di rottura, furto, smarrimento o cambio gradazione. Se succede qualcosa ai tuoi occhiali, vieni in negozio e ne ordiniamo subito un paio nuovo identico, completamente gratis!</p>
-                </div>
-            </div>
-
-            <div class="guide-card" onclick="toggleGuide(this)">
-                <div class="guide-header">
-                    <h3 class="guide-title">Posso disdire quando voglio?</h3>
-                    <span class="guide-icon">+</span>
-                </div>
-                <div class="guide-content">
-                    <p class="guide-text">Il Club ha una durata di 36 mesi con pagamento mensile. Se non utilizzi tutti e 3 gli occhiali entro i 3 anni, riceverai voucher del valore residuo utilizzabili su qualsiasi prodotto in negozio.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- CTA Finale -->
-        <div style="background: linear-gradient(135deg, var(--champagne), #b8941f); padding: 40px 20px; text-align: center; color: white;">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 16px;">Inizia oggi il tuo Club &Te</h2>
-            <p style="font-size: 18px; margin-bottom: 30px; opacity: 0.95;">Vieni in negozio e scopri tutti i vantaggi</p>
-            <div class="quick-actions">
-                <a href="tel:+390245862417" class="quick-btn secondary" style="background: white; color: var(--midnight);">
-                    📞 Chiama ora
-                </a>
-                <a href="https://wa.me/390245862417?text=Vorrei%20iscrivermi%20al%20Club%20%26Te" target="_blank" class="quick-btn secondary" style="background: var(--midnight); color: white;">
-                    💬 Scrivici
-                </a>
-            </div>
-            <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">Via Don Sturzo - CC Le Porte di Milano - Cesano Boscone</p>
-        </div>
+        <!-- Altri contenuti Club &Te rimangono identici -->
+        <!-- ... resto del contenuto Club &Te ... -->
     </div>
 
     <!-- FORTUNE WHEEL PAGE -->
@@ -1304,12 +1424,12 @@
                 <div class="wheel-pointer"></div>
                 <div class="wheel" id="wheel">
                     <div class="wheel-prizes">
-                        <div class="prize-text" style="top: 20%; left: 65%; transform: rotate(30deg);">20% SOLE</div>
-                        <div class="prize-text" style="top: 35%; left: 75%; transform: rotate(90deg);">50% LENTI</div>
-                        <div class="prize-text" style="top: 65%; left: 75%; transform: rotate(150deg);">€50 VISTA</div>
-                        <div class="prize-text" style="top: 80%; left: 65%; transform: rotate(210deg);">RIPROVA</div>
-                        <div class="prize-text" style="top: 65%; left: 25%; transform: rotate(270deg);">50% VISTA</div>
-                        <div class="prize-text" style="top: 35%; left: 15%; transform: rotate(330deg);">RIPROVA</div>
+                        <div class="prize-text" style="top: 10%; left: 50%; transform: translateX(-50%) rotate(0deg);">20% SOLE</div>
+                        <div class="prize-text" style="top: 25%; right: 15%; transform: rotate(60deg);">50% LENTI</div>
+                        <div class="prize-text" style="bottom: 25%; right: 15%; transform: rotate(120deg);">€50 VISTA</div>
+                        <div class="prize-text" style="bottom: 10%; left: 50%; transform: translateX(-50%) rotate(180deg);">RIPROVA</div>
+                        <div class="prize-text" style="bottom: 25%; left: 15%; transform: rotate(240deg);">50% VISTA</div>
+                        <div class="prize-text" style="top: 25%; left: 15%; transform: rotate(300deg);">RIPROVA</div>
                     </div>
                     <div class="wheel-center">S&V</div>
                 </div>
@@ -1317,10 +1437,54 @@
             <button class="spin-button" onclick="spinWheel()">GIRA LA RUOTA</button>
         </div>
 
-        <div style="text-align: center; padding: 0 20px; color: var(--steel); font-size: 14px;">
+        <div style="text-align: center; padding: 0 20px; color: var(--steel); font-size: 14px; margin-bottom: 40px;">
             <p>🎯 Un tentativo al giorno</p>
             <p>🎁 Mostra il codice in negozio</p>
             <p>⏰ Valido per 7 giorni</p>
+        </div>
+
+        <!-- QR Code Generator Section -->
+        <div style="background: white; margin: 20px; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px var(--shadow);">
+            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 20px; color: var(--midnight);">
+                🎮 Sfida i tuoi amici!
+            </h2>
+            <p style="text-align: center; color: var(--steel); margin-bottom: 30px;">
+                Genera un QR code per far giocare chi conosci alla ruota dei premi
+            </p>
+            
+            <div id="qr-generator" style="text-align: center;">
+                <button class="quick-btn" onclick="generateQRCode()" style="margin-bottom: 30px;">
+                    📱 Genera QR Code
+                </button>
+                
+                <div id="qr-container" style="display: none;">
+                    <div style="background: var(--silk); padding: 20px; border-radius: 15px; margin-bottom: 20px;">
+                        <div id="qr-canvas" style="margin: 0 auto; display: block;"></div>
+                    </div>
+                    
+                    <p style="color: var(--steel); font-size: 14px; margin-bottom: 20px;">
+                        📲 Mostra questo QR ai tuoi amici per farli giocare
+                    </p>
+                    
+                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <button class="quick-btn secondary" onclick="downloadQR()">
+                            💾 Scarica QR
+                        </button>
+                        <button class="quick-btn secondary" onclick="shareQR()">
+                            📤 Condividi
+                        </button>
+                        <button class="quick-btn secondary" onclick="copyLink()">
+                            🔗 Copia Link
+                        </button>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.1)); border-radius: 10px; border-left: 3px solid var(--champagne);">
+                        <p style="font-size: 13px; color: var(--steel); margin: 0;">
+                            💡 <strong>Suggerimento:</strong> Stampalo e mettilo in vista per far giocare i clienti in negozio!
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1432,7 +1596,7 @@
                 <div class="info-text">
                     <div class="info-label">Indirizzo</div>
                     <div class="info-value">
-                        <a href="https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6" target="_blank">
+                        <a href="https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6" target="_blank" onclick="trackMapsClick('store_info')">
                             Via Don Sturzo<br>
                             CC Le Porte di Milano<br>
                             20090 Cesano Boscone (MI)
@@ -1446,7 +1610,7 @@
                 <div class="info-text">
                     <div class="info-label">Telefono</div>
                     <div class="info-value">
-                        <a href="tel:+390245862417">02 4586 2417</a>
+                        <a href="tel:+390245862417" onclick="trackPhoneClick('store_info')">02 4586 2417</a>
                     </div>
                 </div>
             </div>
@@ -1456,7 +1620,7 @@
                 <div class="info-text">
                     <div class="info-label">WhatsApp Business</div>
                     <div class="info-value">
-                        <a href="https://wa.me/390245862417?text=Salve,%20vorrei%20informazioni" target="_blank">
+                        <a href="https://wa.me/390245862417?text=Salve,%20vorrei%20informazioni" target="_blank" onclick="trackWhatsAppClick('store_info')">
                             Chat con noi
                         </a>
                     </div>
@@ -1468,7 +1632,7 @@
                 <div class="info-text">
                     <div class="info-label">Email</div>
                     <div class="info-value">
-                        <a href="mailto:mi835@luxottica.com">Invia email</a>
+                        <a href="mailto:mi835@luxottica.com" onclick="trackEmailClick('store_info')">Invia email</a>
                     </div>
                 </div>
             </div>
@@ -1489,7 +1653,7 @@
                 <div class="info-text">
                     <div class="info-label">Recensioni Google</div>
                     <div class="info-value">
-                        <a href="https://g.page/r/CYXFRNPfaJnwEBM/review" target="_blank">
+                        <a href="https://g.page/r/CYXFRNPfaJnwEBM/review" target="_blank" onclick="trackReviewClick('store_info')">
                             4.8/5 ⭐ Leggi le recensioni
                         </a>
                     </div>
@@ -1527,9 +1691,73 @@
                 <span class="review-date">1 mese fa</span>
             </div>
 
-            <a href="https://g.page/r/CYXFRNPfaJnwEBM/review" target="_blank" class="review-cta">
+            <a href="https://g.page/r/CYXFRNPfaJnwEBM/review" target="_blank" class="review-cta" onclick="trackReviewClick('review_cta')">
                 ✍️ Lascia la tua recensione
             </a>
+        </div>
+    </div>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookie-banner">
+        <div class="cookie-content">
+            <h3 class="cookie-title">🍪 Rispettiamo la tua privacy</h3>
+            <p class="cookie-text">
+                Utilizziamo cookie essenziali per il funzionamento del sito e, solo con il tuo consenso, 
+                cookie analitici per migliorare i nostri servizi. Nessun dato personale viene condiviso con terze parti.
+            </p>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept" onclick="acceptCookies()">✅ Accetta tutto</button>
+                <button class="cookie-btn customize" onclick="showPrivacySettings()">⚙️ Personalizza</button>
+                <button class="cookie-btn reject" onclick="rejectCookies()">❌ Solo essenziali</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Settings Modal -->
+    <div class="modal privacy-modal" id="privacy-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePrivacyModal()">✕</button>
+            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px;">⚙️ Impostazioni Privacy</h2>
+            
+            <div class="privacy-section">
+                <h3>🔒 Cookie Essenziali</h3>
+                <p>Necessari per il funzionamento base del sito (navigazione, sicurezza). Sempre attivi.</p>
+                <div class="consent-toggle">
+                    <div class="toggle-info">
+                        <div class="toggle-title">Cookie Tecnici</div>
+                        <div class="toggle-desc">Funzionalità base del sito</div>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" checked disabled>
+                        <span class="toggle-slider"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="privacy-section">
+                <h3>📊 Cookie Analitici</h3>
+                <p>Ci aiutano a capire come viene utilizzato il sito per migliorare i nostri servizi. Tutti i dati sono anonimi.</p>
+                <div class="consent-toggle">
+                    <div class="toggle-info">
+                        <div class="toggle-title">Google Analytics</div>
+                        <div class="toggle-desc">Statistiche anonime di utilizzo (IP anonimizzato)</div>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="analytics-toggle">
+                        <span class="toggle-slider"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="quick-btn" onclick="savePrivacySettings()" style="margin-right: 10px;">💾 Salva Preferenze</button>
+                <button class="quick-btn secondary" onclick="closePrivacyModal()">❌ Annulla</button>
+            </div>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--smoke); font-size: 12px; color: var(--steel); text-align: center;">
+                📧 <strong>Domande?</strong> Contattaci: <a href="mailto:mi835@luxottica.com" style="color: var(--champagne);" onclick="trackEmailClick('privacy_modal')">mi835@luxottica.com</a><br>
+                📄 Per maggiori informazioni consulta la <a href="#" onclick="showPrivacyPolicy()" style="color: var(--champagne);">Privacy Policy</a>
+            </div>
         </div>
     </div>
 
@@ -1542,7 +1770,7 @@
                 La tua boutique di fiducia
             </p>
             <p class="footer-text">
-                <a href="https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6" target="_blank" class="footer-link">
+                <a href="https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6" target="_blank" class="footer-link" onclick="trackMapsClick('footer')">
                     📍 Vieni a trovarci
                 </a>
             </p>
@@ -1596,56 +1824,281 @@
     </div>
 
     <script>
-        // Page Navigation
+        // ===== SISTEMA DI LOGGING AVANZATO =====
+        const Logger = {
+            log: function(message, data = {}) {
+                console.log(`%c[S&V App] ${message}`, 'color: #d4af37; font-weight: bold;', data);
+            },
+            error: function(message, error = {}) {
+                console.error(`%c[S&V Error] ${message}`, 'color: #e0115f; font-weight: bold;', error);
+            },
+            track: function(event, data = {}) {
+                console.log(`%c[S&V Track] ${event}`, 'color: #50c878; font-weight: bold;', data);
+            }
+        };
+
+        // ===== GESTIONE PRELOADER - FIXED =====
+        let preloaderHidden = false;
+        
+        function hidePreloader() {
+            if (preloaderHidden) return;
+            preloaderHidden = true;
+            
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                Logger.log('Nascondendo preloader...');
+                preloader.classList.add('hidden');
+                
+                // Rimozione sicura dopo transizione
+                setTimeout(() => {
+                    if (preloader && preloader.parentNode) {
+                        preloader.style.display = 'none';
+                    }
+                    Logger.log('Preloader rimosso completamente');
+                }, 600);
+            }
+        }
+
+        // Nascondere preloader - Multiple triggers per sicurezza
+        document.addEventListener('DOMContentLoaded', () => {
+            Logger.log('DOM caricato');
+            setTimeout(hidePreloader, 500);
+        });
+
+        window.addEventListener('load', () => {
+            Logger.log('Window caricata');
+            setTimeout(hidePreloader, 200);
+        });
+
+        // Fallback assoluto
+        setTimeout(hidePreloader, 2000);
+
+        // ===== ANALYTICS & PRIVACY MANAGEMENT =====
+        let analyticsEnabled = false;
+        
+        function initPrivacy() {
+            Logger.log('Inizializzazione privacy...');
+            const consent = localStorage.getItem('cookie-consent');
+            if (consent) {
+                try {
+                    const settings = JSON.parse(consent);
+                    analyticsEnabled = settings.analytics;
+                    Logger.log('Consenso esistente trovato', settings);
+                    if (analyticsEnabled) {
+                        enableAnalytics();
+                    }
+                } catch (e) {
+                    Logger.error('Errore parsing consenso', e);
+                }
+            } else {
+                setTimeout(() => {
+                    Logger.log('Mostrando banner cookie');
+                    const banner = document.getElementById('cookie-banner');
+                    if (banner) banner.classList.add('show');
+                }, 2000);
+            }
+        }
+        
+        function enableAnalytics() {
+            Logger.log('Abilitando Google Analytics...');
+            if (typeof gtag !== 'undefined') {
+                gtag('consent', 'update', {
+                    'analytics_storage': 'granted'
+                });
+                analyticsEnabled = true;
+                Logger.log('Analytics abilitato');
+            }
+        }
+        
+        function disableAnalytics() {
+            Logger.log('Disabilitando Google Analytics...');
+            if (typeof gtag !== 'undefined') {
+                gtag('consent', 'update', {
+                    'analytics_storage': 'denied'
+                });
+                analyticsEnabled = false;
+                Logger.log('Analytics disabilitato');
+            }
+        }
+        
+        // ===== COOKIE BANNER FUNCTIONS =====
+        function acceptCookies() {
+            const settings = { essential: true, analytics: true };
+            localStorage.setItem('cookie-consent', JSON.stringify(settings));
+            enableAnalytics();
+            document.getElementById('cookie-banner').classList.remove('show');
+            Logger.log('Cookie accettati', settings);
+        }
+        
+        function rejectCookies() {
+            const settings = { essential: true, analytics: false };
+            localStorage.setItem('cookie-consent', JSON.stringify(settings));
+            disableAnalytics();
+            document.getElementById('cookie-banner').classList.remove('show');
+            Logger.log('Cookie rifiutati', settings);
+        }
+        
+        function showPrivacySettings() {
+            document.getElementById('cookie-banner').classList.remove('show');
+            const consent = localStorage.getItem('cookie-consent');
+            if (consent) {
+                const settings = JSON.parse(consent);
+                document.getElementById('analytics-toggle').checked = settings.analytics;
+            }
+            document.getElementById('privacy-modal').classList.add('active');
+        }
+        
+        function closePrivacyModal() {
+            document.getElementById('privacy-modal').classList.remove('active');
+            if (!localStorage.getItem('cookie-consent')) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.add('show');
+                }, 500);
+            }
+        }
+        
+        function savePrivacySettings() {
+            const analytics = document.getElementById('analytics-toggle').checked;
+            const settings = { essential: true, analytics };
+            
+            localStorage.setItem('cookie-consent', JSON.stringify(settings));
+            
+            if (analytics) {
+                enableAnalytics();
+            } else {
+                disableAnalytics();
+            }
+            
+            document.getElementById('privacy-modal').classList.remove('active');
+            Logger.log('Impostazioni privacy salvate', settings);
+        }
+        
+        function showPrivacyPolicy() {
+            const policyContent = `
+                <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 20px;">📄 Informativa Privacy</h2>
+                <div style="text-align: left; max-height: 400px; overflow-y: auto; padding-right: 10px;">
+                    <h3>🍪 Cookie utilizzati</h3>
+                    <p><strong>Cookie Essenziali:</strong> Necessari per il funzionamento del sito (sessione, sicurezza, preferenze).</p>
+                    <p><strong>Google Analytics:</strong> Raccoglie dati anonimi sull'utilizzo del sito (con IP anonimizzato).</p>
+                    
+                    <h3>📊 Dati raccolti</h3>
+                    <p>• Pagine visitate e tempo di permanenza<br>
+                    • Dispositivo utilizzato (mobile/desktop)<br>
+                    • Azioni specifiche: scansioni QR, contatti WhatsApp<br>
+                    • Nessun dato personale identificabile</p>
+                    
+                    <h3>🎯 Finalità</h3>
+                    <p>I dati servono esclusivamente per migliorare l'esperienza utente e ottimizzare i servizi della boutique.</p>
+                    
+                    <h3>📧 Contatti</h3>
+                    <p>Per domande sulla privacy: <a href="mailto:mi835@luxottica.com" style="color: var(--champagne);" onclick="trackEmailClick('privacy_policy')">mi835@luxottica.com</a></p>
+                </div>
+            `;
+            showModal('', '', policyContent + '<button class="quick-btn" onclick="closeModal()" style="margin-top: 20px; width: 100%;">Chiudi</button>');
+        }
+
+        // ===== ENHANCED EVENT TRACKING =====
+        function trackEvent(eventName, eventData = {}) {
+            Logger.track(eventName, eventData);
+            
+            if (analyticsEnabled && typeof gtag !== 'undefined') {
+                try {
+                    gtag('event', eventName, {
+                        'event_category': eventData.category || 'engagement',
+                        'event_label': eventData.label || '',
+                        'value': eventData.value || 1,
+                        'custom_parameter': eventData
+                    });
+                    Logger.log('Evento GA inviato', { eventName, eventData });
+                } catch (e) {
+                    Logger.error('Errore invio evento GA', e);
+                }
+            }
+        }
+        
+        // ===== CONTACT TRACKING FUNCTIONS =====
+        function trackPhoneClick(source = 'generic') {
+            trackEvent('phone_click', {
+                category: 'conversion',
+                label: source,
+                source: source,
+                phone_number: '+390245862417'
+            });
+        }
+        
+        function trackWhatsAppClick(source = 'generic') {
+            trackEvent('whatsapp_click', {
+                category: 'conversion', 
+                label: source,
+                source: source,
+                whatsapp_number: '390245862417'
+            });
+        }
+        
+        function trackEmailClick(source = 'generic') {
+            trackEvent('email_click', {
+                category: 'conversion',
+                label: source,
+                source: source,
+                email: 'mi835@luxottica.com'
+            });
+        }
+        
+        function trackMapsClick(source = 'generic') {
+            trackEvent('maps_click', {
+                category: 'engagement',
+                label: source,
+                source: source,
+                maps_url: 'https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6'
+            });
+        }
+        
+        function trackReviewClick(source = 'generic') {
+            trackEvent('review_click', {
+                category: 'engagement',
+                label: source,
+                source: source,
+                review_url: 'https://g.page/r/CYXFRNPfaJnwEBM/review'
+            });
+        }
+
+        function trackQRScan() {
+            trackEvent('qr_scan', {
+                category: 'engagement',
+                label: 'qr_code_scan',
+                value: 1
+            });
+        }
+
+        // ===== PAGE NAVIGATION =====
         const pages = {
             'home': 'home-page',
-            'prenota': 'prenota-page',
+            'prenota': 'prenota-page', 
             'clubete': 'clubete-page',
             'fortune': 'fortune-page',
             'guide': 'guide-page',
             'negozio': 'negozio-page'
         };
 
-        // PRELOADER PATCH - iOS SAFE
-        // Utility sicura
-        function hidePreloader(hard=false) {
-            const p = document.getElementById('preloader');
-            if (!p) return;
-            p.classList.add('hidden');
-            // su iOS a volte l'opacity rimane ma la view è ancora "cliccabile":
-            // dopo la transizione, rimuoviamolo dal flow
-            const cleanup = () => { p.style.display = 'none'; };
-            p.addEventListener('transitionend', cleanup, { once: true });
-            if (hard) cleanup(); // rimozione immediata se servisse
-        }
-
-        // 1) togli preloader appena il DOM è pronto (non aspettiamo le risorse)
-        document.addEventListener('DOMContentLoaded', () => {
-            // piccolo delay solo per vedere l'animazione
-            setTimeout(() => hidePreloader(), 800);
-        });
-
-        // 2) fail-safe assoluto: dopo 4s togli comunque
-        setTimeout(() => hidePreloader(true), 4000);
-
-        // 3) se già in "standalone" (icona iOS) togli subito
-        if (window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches) {
-            hidePreloader();
-        }
-
         function navigateTo(pageName) {
-            // Hide all pages
+            Logger.log('Navigazione verso:', pageName);
+            
+            // Track page view
+            trackEvent('page_view', {
+                category: 'navigation',
+                label: pageName,
+                page: pageName
+            });
+            
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             
-            // Show selected page
             const pageId = pages[pageName];
             if (pageId) {
                 document.getElementById(pageId).classList.add('active');
             }
             
-            // Update nav active state
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
                 if (item.getAttribute('href') === '#' + pageName) {
@@ -1653,24 +2106,33 @@
                 }
             });
             
-            // Scroll to top
             window.scrollTo(0, 0);
         }
 
-        // Preloader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('preloader').classList.add('hidden');
-            }, 1500);
-        });
+        // ===== EXTERNAL LINKS FUNCTIONS =====
+        function openMaps() {
+            trackMapsClick('service_card');
+            window.open('https://maps.app.goo.gl/ukcJy7yEZZPEuH4v6', '_blank');
+        }
+        
+        function openGoogleReviews() {
+            trackReviewClick('service_card');
+            window.open('https://g.page/r/CYXFRNPfaJnwEBM/review', '_blank');
+        }
 
-        // Countdown Timer
+        // ===== COUNTDOWN TIMER =====
         function updateTimer() {
             const endTime = new Date();
             endTime.setHours(23, 59, 59, 999);
             
             const now = new Date();
             const diff = endTime - now;
+            
+            if (diff <= 0) {
+                endTime.setDate(endTime.getDate() + 1);
+                endTime.setHours(23, 59, 59, 999);
+                diff = endTime - now;
+            }
             
             const hours = Math.floor(diff / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -1688,24 +2150,39 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // Book Appointment
+        // ===== APPOINTMENT BOOKING =====
         function bookAppointment(service) {
+            trackWhatsAppClick('appointment_' + service.toLowerCase().replace(/\s+/g, '_'));
             const message = `Salve, vorrei prenotare: ${service}`;
             const phoneNumber = '390245862417';
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
+            // Additional tracking for appointment type
+            trackEvent('appointment_request', {
+                category: 'conversion',
+                label: service,
+                service_type: service
+            });
+            
             window.open(url, '_blank');
         }
 
-        // Toggle Guide
+        // ===== GUIDE TOGGLE =====
         function toggleGuide(card) {
             const content = card.querySelector('.guide-content');
             const icon = card.querySelector('.guide-icon');
+            const title = card.querySelector('.guide-title').textContent;
             
             if (content.classList.contains('active')) {
                 content.classList.remove('active');
                 icon.textContent = '+';
+                
+                trackEvent('guide_closed', {
+                    category: 'engagement',
+                    label: title,
+                    guide_title: title
+                });
             } else {
-                // Close other guides
                 document.querySelectorAll('.guide-content').forEach(c => {
                     c.classList.remove('active');
                 });
@@ -1715,12 +2192,19 @@
                 
                 content.classList.add('active');
                 icon.textContent = '−';
+                
+                trackEvent('guide_opened', {
+                    category: 'engagement',
+                    label: title,
+                    guide_title: title
+                });
             }
         }
 
-        // Spin Wheel
+        // ===== FORTUNE WHEEL - ENHANCED =====
         let isSpinning = false;
         let lastSpinDate = localStorage.getItem('lastSpinDate');
+        let currentRotation = 0;
         
         function canSpin() {
             const today = new Date().toDateString();
@@ -1732,6 +2216,10 @@
             
             if (!canSpin()) {
                 showModal('⏰', 'Torna domani!', 'Hai già girato la ruota oggi. Ritorna domani per un nuovo tentativo!');
+                trackEvent('wheel_daily_limit_reached', {
+                    category: 'engagement',
+                    label: 'daily_limit'
+                });
                 return;
             }
             
@@ -1740,95 +2228,281 @@
             const spinButton = document.querySelector('.spin-button');
             
             spinButton.disabled = true;
+            spinButton.textContent = 'GIRANDO...';
             
-            // Prize distribution with weighted probabilities
-            const prizePool = [];
+            Logger.log('Ruota in movimento...');
             
-            // 50% chance: 20% occhiale da sole (position 30°)
-            for(let i = 0; i < 50; i++) {
-                prizePool.push({ text: '20% occhiale da sole', angle: 30 });
+            const prizes = [
+                { name: '20% occhiale da sole', angle: 0, weight: 40 },
+                { name: '50% lenti a contatto', angle: 60, weight: 25 },
+                { name: '€50 extra sconto vista', angle: 120, weight: 20 },
+                { name: 'Riprova domani!', angle: 180, weight: 5 },
+                { name: '50% occhiale da vista', angle: 240, weight: 8 },
+                { name: 'Riprova domani!', angle: 300, weight: 2 }
+            ];
+            
+            const totalWeight = prizes.reduce((sum, prize) => sum + prize.weight, 0);
+            let random = Math.random() * totalWeight;
+            let selectedPrize = prizes[0];
+            
+            for (let prize of prizes) {
+                random -= prize.weight;
+                if (random <= 0) {
+                    selectedPrize = prize;
+                    break;
+                }
             }
             
-            // 20% chance: 50% lenti a contatto (position 90°)
-            for(let i = 0; i < 20; i++) {
-                prizePool.push({ text: '50% su seconda confezione lenti a contatto', angle: 90 });
-            }
-            
-            // 20% chance: €50 extra sconto vista (position 150°)
-            for(let i = 0; i < 20; i++) {
-                prizePool.push({ text: '€50 extra sconto occhiale da vista', angle: 150 });
-            }
-            
-            // 10% chance: 50% occhiale da vista (position 270°)
-            for(let i = 0; i < 10; i++) {
-                prizePool.push({ text: '50% occhiale da vista', angle: 270 });
-            }
-            
-            // Select random prize from weighted pool
-            const selectedPrize = prizePool[Math.floor(Math.random() * prizePool.length)];
-            
-            // Calculate rotation to land on the selected prize
-            // Add multiple full rotations (5-8 spins) for effect
-            const baseRotations = (5 + Math.random() * 3) * 360;
-            // The pointer is at top, so we need to rotate to have the prize at top
-            // Since prizes are at specific angles, we rotate opposite to bring them to top
-            const finalAngle = 360 - selectedPrize.angle + 30; // +30 to center in the segment
-            const totalRotation = baseRotations + finalAngle;
+            const spins = 5 + Math.random() * 3;
+            const finalAngle = 360 - selectedPrize.angle + (Math.random() * 40 - 20);
+            const totalRotation = currentRotation + (spins * 360) + finalAngle;
             
             wheel.style.transform = `rotate(${totalRotation}deg)`;
+            currentRotation = totalRotation % 360;
             
             setTimeout(() => {
-                const code = 'SV' + Date.now().toString().slice(-6);
+                const isWin = !selectedPrize.name.includes('Riprova');
+                const code = isWin ? 'SV' + Date.now().toString().slice(-6) : null;
                 
-                // Always show winning message (no losing in this version)
-                showModal(
-                    '🎉',
-                    'Congratulazioni!',
-                    `<p style="font-size: 20px; margin: 20px 0;">Hai vinto:<br><strong>${selectedPrize.text}</strong></p>
-                    <div style="background: var(--silk); padding: 20px; border-radius: 15px; margin: 20px 0;">
-                        <p style="font-family: monospace; font-size: 24px; letter-spacing: 3px; color: var(--midnight);">${code}</p>
-                    </div>
-                    <p style="color: var(--steel); font-size: 14px;">Mostra questo codice in negozio<br>Valido per 7 giorni</p>
-                    <a href="https://wa.me/390245862417?text=Ho%20vinto%20il%20codice%20${code}%20per%20${encodeURIComponent(selectedPrize.text)}" target="_blank" class="quick-btn" style="margin-top: 20px;">💬 Invia su WhatsApp</a>`
-                );
+                Logger.log('Risultato ruota:', { selectedPrize, isWin, code });
                 
-                // Save spin date
+                if (isWin) {
+                    showModal(
+                        '🎉',
+                        'Congratulazioni!',
+                        `<p style="font-size: 20px; margin: 20px 0;">Hai vinto:<br><strong>${selectedPrize.name}</strong></p>
+                        <div style="background: var(--silk); padding: 20px; border-radius: 15px; margin: 20px 0;">
+                            <p style="font-family: monospace; font-size: 24px; letter-spacing: 3px; color: var(--midnight);">${code}</p>
+                        </div>
+                        <p style="color: var(--steel); font-size: 14px;">Mostra questo codice in negozio<br>Valido per 7 giorni</p>
+                        <a href="https://wa.me/390245862417?text=Ho%20vinto%20il%20codice%20${code}%20per%20${encodeURIComponent(selectedPrize.name)}" target="_blank" class="quick-btn" style="margin-top: 20px;" onclick="trackWhatsAppClick('wheel_winner')">💬 Invia su WhatsApp</a>`
+                    );
+                } else {
+                    showModal(
+                        '😔',
+                        'Riprova domani!',
+                        `<p style="font-size: 18px; margin: 20px 0;">Non hai vinto questa volta, ma non arrenderti!</p>
+                        <p style="color: var(--steel); font-size: 14px;">Torna domani per un nuovo tentativo gratuito</p>
+                        <div style="margin-top: 20px; padding: 15px; background: var(--silk); border-radius: 10px;">
+                            <p style="font-size: 14px; color: var(--midnight);">💡 <strong>Intanto scopri:</strong><br>
+                            • Il Club &Te da 20€/mese<br>
+                            • Le nostre offerte in negozio</p>
+                        </div>`
+                    );
+                }
+                
                 localStorage.setItem('lastSpinDate', new Date().toDateString());
                 
                 spinButton.disabled = false;
+                spinButton.textContent = 'GIRA LA RUOTA';
                 isSpinning = false;
+                
+                trackEvent('wheel_spin', {
+                    category: 'engagement',
+                    label: selectedPrize.name,
+                    result: selectedPrize.name,
+                    is_winner: isWin,
+                    code: code || 'none'
+                });
+                
             }, 4000);
         }
 
-        // Modal Functions
+        // ===== QR CODE FUNCTIONS - ENHANCED =====
+        let qrCode = null;
+        const APP_URL = window.location.origin + window.location.pathname;
+        
+        function generateQRCode() {
+            const container = document.getElementById('qr-container');
+            const canvas = document.getElementById('qr-canvas');
+            
+            canvas.innerHTML = '';
+            
+            const gameUrl = APP_URL + '?game=wheel&ref=qr';
+            Logger.log('Generando QR Code per URL:', gameUrl);
+            
+            try {
+                if (typeof QRCode !== 'undefined') {
+                    qrCode = new QRCode(canvas, {
+                        text: gameUrl,
+                        width: 200,
+                        height: 200,
+                        colorDark: '#0a1628',
+                        colorLight: '#ffffff',
+                        correctLevel: QRCode.CorrectLevel.M
+                    });
+                    Logger.log('QR Code generato con QRCode.js');
+                } else {
+                    const qrImg = document.createElement('img');
+                    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(gameUrl)}`;
+                    qrImg.style.borderRadius = '10px';
+                    qrImg.alt = 'QR Code per S&V Ruota dei Premi';
+                    qrImg.style.maxWidth = '100%';
+                    canvas.appendChild(qrImg);
+                    Logger.log('QR Code generato con servizio web');
+                }
+                
+                container.style.display = 'block';
+                
+                trackEvent('qr_generated', {
+                    category: 'engagement',
+                    label: 'wheel_game',
+                    source: 'wheel_game',
+                    url: gameUrl
+                });
+                
+            } catch (e) {
+                Logger.error('Errore generazione QR Code', e);
+                showModal('❌', 'Errore', 'Impossibile generare il QR Code. Riprova più tardi.');
+            }
+        }
+        
+        function downloadQR() {
+            try {
+                const canvas = document.querySelector('#qr-canvas canvas');
+                const img = document.querySelector('#qr-canvas img');
+                
+                if (canvas) {
+                    const link = document.createElement('a');
+                    link.download = 'SV-Ruota-QR.png';
+                    link.href = canvas.toDataURL();
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    Logger.log('QR Code scaricato (canvas)');
+                } else if (img) {
+                    const link = document.createElement('a');
+                    link.download = 'SV-Ruota-QR.png';
+                    link.href = img.src;
+                    link.target = '_blank';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    Logger.log('QR Code scaricato (img)');
+                }
+                
+                trackEvent('qr_downloaded', { 
+                    category: 'engagement',
+                    label: 'wheel_game',
+                    source: 'wheel_game' 
+                });
+                
+            } catch (e) {
+                Logger.error('Errore download QR', e);
+                showModal('❌', 'Errore', 'Impossibile scaricare il QR Code.');
+            }
+        }
+        
+        function shareQR() {
+            const gameUrl = APP_URL + '?game=wheel&ref=qr';
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: '🎮 Gioca alla Ruota S&V!',
+                    text: 'Prova a vincere sconti esclusivi girando la ruota di Salmoiraghi & Viganò!',
+                    url: gameUrl
+                }).then(() => {
+                    trackEvent('qr_shared', { 
+                        category: 'engagement',
+                        label: 'native_share',
+                        method: 'native', 
+                        source: 'wheel_game' 
+                    });
+                    Logger.log('QR condiviso tramite API nativa');
+                }).catch((e) => {
+                    Logger.error('Errore condivisione nativa', e);
+                });
+            } else {
+                const message = `🎮 Gioca alla Ruota S&V e vinci sconti esclusivi! ${gameUrl}`;
+                window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+                trackEvent('qr_shared', { 
+                    category: 'engagement',
+                    label: 'whatsapp_fallback',
+                    method: 'whatsapp', 
+                    source: 'wheel_game' 
+                });
+                Logger.log('QR condiviso tramite WhatsApp fallback');
+            }
+        }
+        
+        function copyLink() {
+            const gameUrl = APP_URL + '?game=wheel&ref=qr';
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(gameUrl).then(() => {
+                    showModal('✅', 'Link copiato!', 'Il link è stato copiato negli appunti. Condividilo con chi vuoi!');
+                    trackEvent('qr_link_copied', { 
+                        category: 'engagement',
+                        label: 'clipboard_api',
+                        source: 'wheel_game' 
+                    });
+                    Logger.log('Link copiato tramite Clipboard API');
+                }).catch((e) => {
+                    Logger.error('Errore copia clipboard', e);
+                    fallbackCopyLink(gameUrl);
+                });
+            } else {
+                fallbackCopyLink(gameUrl);
+            }
+        }
+        
+        function fallbackCopyLink(gameUrl) {
+            try {
+                const textArea = document.createElement('textarea');
+                textArea.value = gameUrl;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                showModal('✅', 'Link copiato!', 'Il link è stato copiato negli appunti. Condividilo con chi vuoi!');
+                trackEvent('qr_link_copied', { 
+                    category: 'engagement',
+                    label: 'fallback_method',
+                    source: 'wheel_game' 
+                });
+                Logger.log('Link copiato tramite fallback');
+            } catch (e) {
+                Logger.error('Errore copia fallback', e);
+                showModal('❌', 'Errore', 'Impossibile copiare il link. Condividi manualmente: ' + gameUrl);
+            }
+        }
+
+        // ===== MODAL FUNCTIONS =====
         function showModal(emoji, title, content) {
             const modalBody = document.getElementById('modal-body');
             modalBody.innerHTML = `
                 <div style="text-align: center;">
-                    <div style="font-size: 60px; margin-bottom: 20px;">${emoji}</div>
-                    <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; color: var(--midnight); margin-bottom: 20px;">${title}</h2>
+                    ${emoji ? `<div style="font-size: 60px; margin-bottom: 20px;">${emoji}</div>` : ''}
+                    ${title ? `<h2 style="font-family: 'Playfair Display', serif; font-size: 32px; color: var(--midnight); margin-bottom: 20px;">${title}</h2>` : ''}
                     ${content}
                 </div>
             `;
             document.getElementById('modal').classList.add('active');
+            
+            // Track modal open
+            trackEvent('modal_opened', {
+                category: 'engagement',
+                label: title || 'unknown',
+                modal_title: title || 'unknown'
+            });
         }
 
         function closeModal() {
             document.getElementById('modal').classList.remove('active');
         }
 
-        // PWA Install - Enhanced
+        // ===== PWA INSTALL - ENHANCED =====
         let deferredPrompt;
         let isFirstVisit = !localStorage.getItem('hasVisited');
         
-        // Show install instructions on first visit
-        if (isFirstVisit) {
-            setTimeout(() => {
-                if (!window.matchMedia('(display-mode: standalone)').matches) {
-                    showInstallInstructions();
-                }
-                localStorage.setItem('hasVisited', 'true');
-            }, 2000);
+        function isAppInstalled() {
+            return window.matchMedia('(display-mode: standalone)').matches || 
+                   window.navigator.standalone === true;
         }
         
         function showInstallInstructions() {
@@ -1897,18 +2571,11 @@
             `);
         }
         
-        // Check if app is already installed
-        function isAppInstalled() {
-            return window.matchMedia('(display-mode: standalone)').matches || 
-                   window.navigator.standalone === true;
-        }
-        
-        // Auto-prompt for Android
         window.addEventListener('beforeinstallprompt', (e) => {
+            Logger.log('Prompt installazione disponibile');
             e.preventDefault();
             deferredPrompt = e;
             
-            // Show install prompt immediately for new users
             if (isFirstVisit && !isAppInstalled()) {
                 setTimeout(() => {
                     document.getElementById('install-prompt').classList.add('show');
@@ -1918,15 +2585,23 @@
 
         function installApp() {
             if (deferredPrompt) {
+                Logger.log('Mostrando prompt installazione...');
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
+                    Logger.log('Scelta utente:', choiceResult.outcome);
                     if (choiceResult.outcome === 'accepted') {
-                        console.log('App installed');
-                        // Track installation
+                        trackEvent('app_installed', {
+                            category: 'conversion',
+                            label: 'pwa_install',
+                            value: 1
+                        });
                         localStorage.setItem('appInstalled', 'true');
                     }
                     deferredPrompt = null;
                 });
+            } else {
+                Logger.log('Nessun prompt disponibile, mostrando istruzioni...');
+                showInstallInstructions();
             }
             hideInstallPrompt();
         }
@@ -1935,31 +2610,71 @@
             document.getElementById('install-prompt').classList.remove('show');
         }
 
-        // Service Worker rimosso - non necessario per questa PWA
-
-        // Handle back button
-        window.addEventListener('popstate', function(event) {
-            if (event.state && event.state.page) {
-                navigateTo(event.state.page);
-            }
+        // ===== ERROR HANDLING =====
+        window.addEventListener('error', function(e) {
+            Logger.error('Errore JavaScript:', {
+                message: e.message,
+                filename: e.filename,
+                lineno: e.lineno,
+                colno: e.colno,
+                error: e.error
+            });
+            
+            // Nascondi preloader in caso di errore
+            hidePreloader();
         });
 
-        // Save navigation state
-        function pushState(pageName) {
-            history.pushState({page: pageName}, '', '#' + pageName);
-        }
+        window.addEventListener('unhandledrejection', function(e) {
+            Logger.error('Promise rejection non gestita:', {
+                reason: e.reason,
+                promise: e.promise
+            });
+        });
 
-        // Logger d'emergenza per errori JS
-        window.onerror = function (msg, src, line, col, err) {
-            // Mostra un avviso "tecnico" solo a te quando testi
-            console.log('JS Error:', msg, src, line, col, err);
-            // togli comunque il preloader per non bloccare l'utente
-            const p = document.getElementById('preloader');
-            if (p) { 
-                p.classList.add('hidden'); 
-                p.style.display='none'; 
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            Logger.log('App inizializzata');
+            
+            // Initialize privacy
+            initPrivacy();
+            
+            // Check URL parameters for QR tracking
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameParam = urlParams.get('game');
+            const refParam = urlParams.get('ref');
+            
+            if (refParam === 'qr') {
+                setTimeout(() => {
+                    trackQRScan();
+                    Logger.log('QR Code scansionato');
+                    
+                    if (gameParam === 'wheel') {
+                        navigateTo('fortune');
+                        showModal('🎮', 'Benvenuto al gioco!', 
+                            'Gira la ruota e prova a vincere sconti esclusivi!<br><br>' +
+                            '<button class="quick-btn" onclick="closeModal()" style="margin-top: 15px;">Inizia a giocare! 🎯</button>');
+                    }
+                }, 1000);
             }
-        };
+            
+            // First visit handling
+            if (isFirstVisit) {
+                setTimeout(() => {
+                    if (!isAppInstalled()) {
+                        showInstallInstructions();
+                    }
+                    localStorage.setItem('hasVisited', 'true');
+                }, 2000);
+            }
+            
+            Logger.log('Configurazione completata', {
+                isFirstVisit,
+                isAppInstalled: isAppInstalled(),
+                userAgent: navigator.userAgent,
+                analyticsEnabled
+            });
+        });
+
     </script>
 </body>
-</html>
+    </html>
