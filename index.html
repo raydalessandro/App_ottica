@@ -168,13 +168,15 @@
 
         .brand {
             font-family: 'Playfair Display', serif;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--midnight);
             letter-spacing: -0.5px;
             text-decoration: none;
             cursor: pointer;
             position: relative;
+            text-align: center;
+            line-height: 1.3;
         }
 
         .brand span {
@@ -184,12 +186,25 @@
 
         .brand-tuo {
             color: var(--champagne);
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        .brand-main {
+            color: var(--midnight);
+            font-size: 20px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .brand-main span {
+            color: var(--champagne);
+            font-weight: 400;
         }
 
         .brand-location {
@@ -197,8 +212,6 @@
             font-size: 12px;
             font-weight: 500;
             display: block;
-            margin-top: 2px;
-            text-align: right;
             font-style: italic;
             opacity: 0.9;
         }
@@ -1566,7 +1579,7 @@
         <div class="header-content">
             <a href="#home" class="brand" onclick="navigateTo('home')">
                 <span class="brand-tuo">Il TUO</span>
-                Salmoiraghi <span>&</span> Viganò
+                <span class="brand-main">Salmoiraghi <span>&</span> Viganò</span>
                 <span class="brand-location">di Cesano Boscone</span>
             </a>
         </div>
@@ -1576,7 +1589,11 @@
     <div id="home-page" class="page active">
         <section class="hero">
             <div class="hero-content">
-                <h1 class="hero-title">Il TUO Salmoiraghi & Viganò<br><span style="color: var(--champagne);">di Cesano Boscone</span></h1>
+                <h1 class="hero-title">
+                    Il TUO<br>
+                    Salmoiraghi & Viganò<br>
+                    <span style="color: var(--champagne);">di Cesano Boscone</span>
+                </h1>
                 <p class="hero-subtitle">La tua boutique di fiducia • Le Porte di Milano</p>
                 <div class="quick-actions">
                     <a href="tel:+390245862417" class="quick-btn" onclick="trackPhoneClick('hero')">
@@ -1729,7 +1746,11 @@
     <div id="prenota-page" class="page">
         <div class="hero">
             <div class="hero-content">
-                <h1 class="hero-title">Prenota nel TUO negozio di <span style="color: var(--champagne);">Cesano</span></h1>
+                <h1 class="hero-title">
+                    Il TUO negozio di<br>
+                    Salmoiraghi & Viganò<br>
+                    <span style="color: var(--champagne);">di Cesano Boscone</span>
+                </h1>
                 <p class="hero-subtitle">Il team di Cesano Boscone ti aspetta</p>
             </div>
         </div>
@@ -1972,7 +1993,68 @@
                 <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.1)); border-radius: 12px; border-left: 3px solid var(--champagne);">
                     <p style="font-size: 13px; color: var(--steel); margin: 0; line-height: 1.5;">
                         <strong>Come funziona:</strong> Gioca tutti i giochi che vuoi, ma puoi vincere solo una volta al giorno (per tutti i giochi). 
-                        I codici premio sono validi 7 giorni. *Minima spesa pre-sconto €50.
+                        I codici premio sono validi 7 giorni e <strong>utilizzabili solo nel negozio di Cesano Boscone</strong>. *Minima spesa pre-sconto €50.
+                    </p>
+                </div>
+            </div>
+
+            <!-- QR Code Sharing Section -->
+            <div style="background: linear-gradient(135deg, var(--midnight), #1a2c48); color: white; border-radius: 20px; padding: 30px; margin-bottom: 30px; text-align: center; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -50px; right: -50px; width: 100px; height: 100px; background: rgba(212, 175, 55, 0.1); border-radius: 50%;"></div>
+                <div style="position: absolute; bottom: -30px; left: -30px; width: 80px; height: 80px; background: rgba(212, 175, 55, 0.1); border-radius: 50%;"></div>
+                
+                <div style="position: relative; z-index: 1;">
+                    <div style="font-size: 48px; margin-bottom: 15px;">🤝</div>
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 15px;">
+                        Invita un Amico = Sconto per Entrambi!
+                    </h2>
+                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 20px;">
+                        <strong>Tu + un amico = 20% SOLE per tutti e due!</strong><br>
+                        Condividi il tuo QR, il tuo amico lo scansiona, giocate entrambi
+                    </p>
+                    
+                    <div style="background: rgba(80, 200, 120, 0.2); padding: 15px; border-radius: 15px; margin: 20px 0; border: 2px solid rgba(80, 200, 120, 0.4);">
+                        <p style="color: white; font-size: 16px; margin: 0; font-weight: 600;">
+                            🎁 Entrambi vincete: <strong>20% su occhiali da sole!</strong>
+                        </p>
+                    </div>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 15px; margin: 20px 0;">
+                        <h4 style="color: var(--champagne); margin-bottom: 10px;">🚀 Semplicissimo:</h4>
+                        <div style="text-align: left; max-width: 300px; margin: 0 auto;">
+                            <p style="color: white; font-size: 14px; margin: 5px 0;">1️⃣ Tu generi il QR qui sotto</p>
+                            <p style="color: white; font-size: 14px; margin: 5px 0;">2️⃣ Il tuo amico lo scansiona</p>
+                            <p style="color: white; font-size: 14px; margin: 5px 0;">3️⃣ Entrambi giocate ai giochi</p>
+                            <p style="color: white; font-size: 14px; margin: 5px 0;">4️⃣ <strong>BOOM! 20% SOLE per tutti e due!</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: none; margin: 20px 0; padding: 20px; background: white; border-radius: 15px;" id="friend-qr-container">
+                        <h3 style="color: var(--midnight); margin-bottom: 15px;">🤝 Il TUO QR "Invita Amico"</h3>
+                        <div id="friend-qr-canvas" style="display: flex; justify-content: center; margin: 15px 0;"></div>
+                        <div style="background: var(--silk); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                            <p style="color: var(--midnight); font-size: 14px; margin: 0; font-weight: 600;">
+                                🎯 Quando il tuo amico scansiona questo QR:
+                            </p>
+                            <p style="color: var(--steel); font-size: 13px; margin: 5px 0 0 0;">
+                                • Viene sulla tua app con il TUO codice amico<br>
+                                • Giocate entrambi<br>
+                                • Ricevete entrambi il codice 20% SOLE!
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                            <button class="quick-btn secondary" onclick="downloadFriendQR()" style="background: var(--champagne); color: white; font-size: 12px; padding: 8px 16px;">💾 Scarica QR</button>
+                            <button class="quick-btn secondary" onclick="shareFriendQR()" style="background: var(--emerald); color: white; font-size: 12px; padding: 8px 16px;">📤 Condividi</button>
+                            <button class="quick-btn secondary" onclick="copyFriendLink()" style="background: var(--sapphire); color: white; font-size: 12px; padding: 8px 16px;">🔗 Copia Link</button>
+                        </div>
+                    </div>
+                    
+                    <button class="quick-btn secondary" onclick="generateFriendQR()" style="background: var(--emerald); color: white; font-size: 16px; box-shadow: 0 5px 15px rgba(80, 200, 120, 0.3);">
+                        🤝 Genera il TUO QR "Invita Amico"
+                    </button>
+                    
+                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 12px; margin-top: 15px;">
+                        Il sistema riconosce automaticamente chi ha invitato chi! 
                     </p>
                 </div>
             </div>
@@ -1988,13 +2070,21 @@
     <div id="negozio-page" class="page">
         <div class="hero">
             <div class="hero-content">
-                <h1 class="hero-title">Il TUO negozio di <span style="color: var(--champagne);">Cesano Boscone</span></h1>
+                <h1 class="hero-title">
+                    Il TUO negozio di<br>
+                    Salmoiraghi & Viganò<br>
+                    <span style="color: var(--champagne);">di Cesano Boscone</span>
+                </h1>
                 <p class="hero-subtitle">Esperienza e professionalità dal 1865 • Le Porte di Milano</p>
             </div>
         </div>
 
         <div class="store-info">
-            <h2>Il TUO Salmoiraghi & Viganò di Cesano</h2>
+            <h2>
+                Il TUO<br>
+                Salmoiraghi & Viganò<br>
+                di Cesano
+            </h2>
             
             <div class="info-row">
                 <div class="info-icon">📍</div>
@@ -2264,7 +2354,11 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-brand">Il TUO Salmoiraghi & Viganò</div>
+            <div class="footer-brand">
+                Il TUO<br>
+                Salmoiraghi & Viganò<br>
+                di Cesano Boscone
+            </div>
             <p class="footer-text">
                 L'eccellenza della vista dal 1865<br>
                 <strong>La tua boutique di fiducia a Cesano Boscone</strong>
@@ -2880,6 +2974,13 @@
                 return;
             }
             
+            // SEMPRE controlla il sistema amici dopo ogni gioco (anche se hai già vinto oggi)
+            setTimeout(() => {
+                checkFriendReward(gameType);
+                checkIfInviterShouldGetReward();
+            }, 500);
+            
+            // Premio giornaliero normale (con limite)
             if (canWinToday()) {
                 const prize = selectPrize();
                 const code = 'SV' + Date.now().toString().slice(-6);
@@ -2889,6 +2990,7 @@
                     <div style="background: var(--silk); padding: 20px; border-radius: 15px; margin: 20px 0;">
                         <p style="font-family: monospace; font-size: 24px; letter-spacing: 3px; color: var(--midnight);">${code}</p>
                         <p style="font-size: 12px; color: var(--steel); margin-top: 8px;">${prize.condition}</p>
+                        <p style="font-size: 12px; color: var(--steel);">Valido solo nel negozio di Cesano Boscone</p>
                     </div>
                     <p style="color: var(--steel); font-size: 14px;">Mostra questo codice in negozio<br>Valido per 7 giorni</p>
                     <a href="https://wa.me/390245862417?text=Ho%20vinto%20il%20codice%20${code}%20per%20${encodeURIComponent(prize.name)}" target="_blank" class="quick-btn" style="margin-top: 20px;" onclick="trackWhatsAppClick('game_winner')">💬 Invia su WhatsApp</a>`
@@ -2905,15 +3007,27 @@
                     code: code
                 });
             } else {
+                // Anche se hai già vinto oggi, mostra che il sistema amici è ancora attivo
+                const referredBy = SafeStorage.getItem('referredBy');
+                const hasInvites = SafeStorage.getItem('myInvites');
+                
+                let extraMessage = '';
+                if (referredBy && canGetFriendReward()) {
+                    extraMessage = '<br><br>💡 <strong>Bonus:</strong> Stai partecipando alla sfida amici! Potresti ancora vincere il 20% SOLE extra!';
+                } else if (hasInvites) {
+                    extraMessage = '<br><br>🎯 <strong>Hai invitato amici?</strong> Se giocano anche loro, vincerai il premio invito!';
+                }
+                
                 showModal('👏', 'Ben giocato!', 
-                    `Ottima performance! Hai già vinto oggi, ma continua a giocare per divertirti.<br><br>
-                    <p style="color: var(--steel); font-size: 14px; margin-top: 16px;">Torna domani per vincere altri premi!</p>`
+                    `Ottima performance! Hai già vinto il premio giornaliero, ma continua a giocare per divertirti.${extraMessage}<br><br>
+                    <p style="color: var(--steel); font-size: 14px; margin-top: 16px;">Torna domani per vincere altri premi normali!</p>`
                 );
                 
                 trackEvent('game_completed_no_win', {
                     category: 'engagement',
                     label: gameType,
-                    game_type: gameType
+                    game_type: gameType,
+                    has_friend_system_active: !!(referredBy || hasInvites)
                 });
             }
         }
@@ -3639,7 +3753,346 @@
             window.scrollTo(0, 0);
         }
 
-        // ===== QR CODE FUNCTIONS - ENHANCED =====
+        // ===== FRIEND REFERRAL SYSTEM - SUPER SIMPLE =====
+        let myUserId = SafeStorage.getItem('myUserId');
+        if (!myUserId) {
+            myUserId = 'USER_' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+            SafeStorage.setItem('myUserId', myUserId);
+            Logger.log('Nuovo user ID generato:', myUserId);
+        }
+
+        function checkForReferral() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const friendId = urlParams.get('friend');
+            
+            if (friendId && friendId !== myUserId) {
+                Logger.log('Referral detectato da amico:', friendId);
+                
+                // Segna che questo utente è arrivato tramite referral
+                SafeStorage.setItem('referredBy', friendId);
+                
+                // Mostra messaggio di benvenuto
+                setTimeout(() => {
+                    showModal('🤝', 'Benvenuto dall\'amico!', 
+                        `Un tuo amico ti ha invitato a giocare!<br><br>
+                        <div style="background: rgba(80, 200, 120, 0.1); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                            <strong>🎁 BONUS SPECIALE:</strong><br>
+                            Quando entrambi giocate, riceverete il <strong>20% su occhiali da sole!</strong>
+                        </div>
+                        <button class="quick-btn" onclick="closeModal(); startFriendChallenge();" style="margin-top: 15px;">🎮 Inizia a giocare!</button>`
+                    );
+                }, 1000);
+                
+                trackEvent('friend_referral_landed', {
+                    category: 'conversion',
+                    label: 'friend_system',
+                    referrer_id: friendId,
+                    new_user_id: myUserId
+                });
+            }
+        }
+
+        function startFriendChallenge() {
+            const referredBy = SafeStorage.getItem('referredBy');
+            if (referredBy) {
+                showModal('🎯', 'Sfida Amici Attiva!', 
+                    `<div style="text-align: center;">
+                        <div style="background: var(--emerald); color: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                            <h3 style="margin: 0 0 10px 0;">🤝 SFIDA ATTIVA!</h3>
+                            <p style="margin: 0;">Tu + il tuo amico = <strong>20% SOLE per entrambi!</strong></p>
+                        </div>
+                        <p style="color: var(--steel); margin-bottom: 20px;">
+                            Gioca a qualsiasi gioco. Quando avrete giocato entrambi, riceverete il codice sconto!
+                        </p>
+                        <button class="quick-btn" onclick="closeModal();" style="width: 100%;">🎮 Perfetto, gioco subito!</button>
+                    </div>`
+                );
+            }
+            navigateTo('giochi');
+        }
+
+        function generateFriendQR() {
+            const container = document.getElementById('friend-qr-container');
+            const canvas = document.getElementById('friend-qr-canvas');
+            
+            canvas.innerHTML = '';
+            
+            // URL corretto dell'app
+            const appUrl = 'https://raydalessandro.github.io/App_ottica/';
+            const friendUrl = appUrl + '?friend=' + myUserId + '&ref=friendqr';
+            Logger.log('Generando Friend QR per URL:', friendUrl);
+            
+            try {
+                if (typeof QRCode !== 'undefined') {
+                    new QRCode(canvas, {
+                        text: friendUrl,
+                        width: 200,
+                        height: 200,
+                        colorDark: '#0a1628',
+                        colorLight: '#ffffff',
+                        correctLevel: QRCode.CorrectLevel.M
+                    });
+                } else {
+                    const qrImg = document.createElement('img');
+                    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(friendUrl)}`;
+                    qrImg.style.borderRadius = '10px';
+                    qrImg.alt = 'QR Code Invita Amico S&V';
+                    qrImg.style.maxWidth = '100%';
+                    canvas.appendChild(qrImg);
+                }
+                
+                container.style.display = 'block';
+                
+                // Mostra anche il link generato per debug
+                showModal('✅', 'QR Generato!', 
+                    `Il tuo QR "Invita Amico" è pronto!<br><br>
+                    <div style="background: var(--silk); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                        <p style="color: var(--midnight); font-size: 14px; margin: 0;"><strong>Link generato:</strong></p>
+                        <p style="color: var(--steel); font-size: 12px; word-break: break-all; margin: 5px 0 0 0;">${friendUrl}</p>
+                    </div>
+                    <button class="quick-btn" onclick="closeModal()" style="margin-top: 15px;">Perfetto!</button>`
+                );
+                
+                trackEvent('friend_qr_generated', {
+                    category: 'engagement',
+                    label: 'friend_referral',
+                    user_id: myUserId
+                });
+                
+            } catch (e) {
+                Logger.error('Errore generazione Friend QR', e);
+                showModal('❌', 'Errore', 'Impossibile generare il QR Code. Riprova più tardi.');
+            }
+        }
+
+        function downloadFriendQR() {
+            try {
+                const canvas = document.querySelector('#friend-qr-canvas canvas');
+                const img = document.querySelector('#friend-qr-canvas img');
+                
+                if (canvas) {
+                    const link = document.createElement('a');
+                    link.download = 'SV-Invita-Amico-QR.png';
+                    link.href = canvas.toDataURL();
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else if (img) {
+                    const link = document.createElement('a');
+                    link.download = 'SV-Invita-Amico-QR.png';
+                    link.href = img.src;
+                    link.target = '_blank';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+                
+                trackEvent('friend_qr_downloaded', {
+                    category: 'engagement',
+                    label: 'friend_referral'
+                });
+                
+            } catch (e) {
+                Logger.error('Errore download Friend QR', e);
+                showModal('❌', 'Errore', 'Impossibile scaricare il QR Code.');
+            }
+        }
+
+        function shareFriendQR() {
+            const appUrl = 'https://raydalessandro.github.io/App_ottica/';
+            const friendUrl = appUrl + '?friend=' + myUserId + '&ref=friendqr';
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: '🤝 Gioca con me e vinciamo entrambi!',
+                    text: 'Ho trovato quest\'app fantastica di Salmoiraghi & Viganò! Scansiona il mio QR, giochiamo entrambi e vinciamo il 20% sugli occhiali da sole! 🕶️',
+                    url: friendUrl
+                }).then(() => {
+                    trackEvent('friend_qr_shared', { 
+                        category: 'conversion',
+                        label: 'native_share',
+                        method: 'native'
+                    });
+                }).catch((e) => Logger.error('Errore condivisione nativa', e));
+            } else {
+                const message = `🤝 Gioca con me e vinciamo entrambi il 20% sugli occhiali da sole S&V! 🕶️\n\nScansiona il mio QR o vai qui: ${friendUrl}`;
+                window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+                trackEvent('friend_qr_shared', { 
+                    category: 'conversion',
+                    label: 'whatsapp_fallback',
+                    method: 'whatsapp'
+                });
+            }
+        }
+
+        function copyFriendLink() {
+            const appUrl = 'https://raydalessandro.github.io/App_ottica/';
+            const friendUrl = appUrl + '?friend=' + myUserId + '&ref=friendqr';
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(friendUrl).then(() => {
+                    showModal('✅', 'Link copiato!', 
+                        `Il tuo link "Invita Amico" è stato copiato!<br><br>
+                        <div style="background: var(--silk); padding: 15px; border-radius: 10px; font-family: monospace; font-size: 12px; word-break: break-all;">
+                            ${friendUrl}
+                        </div>
+                        <p style="color: var(--steel); font-size: 14px; margin-top: 15px;">Condividilo e giocate entrambi per vincere il 20% SOLE!</p>`
+                    );
+                    trackEvent('friend_link_copied', { 
+                        category: 'engagement',
+                        label: 'clipboard_api'
+                    });
+                }).catch((e) => {
+                    Logger.error('Errore copia clipboard', e);
+                    fallbackCopyFriendLink(friendUrl);
+                });
+            } else {
+                fallbackCopyFriendLink(friendUrl);
+            }
+        }
+
+        function fallbackCopyFriendLink(friendUrl) {
+            try {
+                const textArea = document.createElement('textarea');
+                textArea.value = friendUrl;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                showModal('✅', 'Link copiato!', 'Il tuo link "Invita Amico" è stato copiato negli appunti!');
+                trackEvent('friend_link_copied', { 
+                    category: 'engagement',
+                    label: 'fallback_method'
+                });
+            } catch (e) {
+                Logger.error('Errore copia fallback', e);
+                showModal('❌', 'Errore', 'Impossibile copiare il link. Condividi manualmente: ' + friendUrl);
+            }
+        }
+
+        // Controlla se entrambi gli amici hanno giocato per dare il premio
+        function checkFriendReward(gameType) {
+            const referredBy = SafeStorage.getItem('referredBy');
+            if (referredBy) {
+                // Segna che questo utente ha giocato
+                SafeStorage.setItem('hasPlayed', 'true');
+                
+                // Simula check se anche l'amico ha giocato (in un sistema reale questo sarebbe su server)
+                // Per demo, diamo il premio dopo il secondo gioco
+                const gamesPlayed = parseInt(SafeStorage.getItem('gamesPlayed') || '0') + 1;
+                SafeStorage.setItem('gamesPlayed', gamesPlayed.toString());
+                
+                if (gamesPlayed >= 2 && !SafeStorage.getItem('friendRewardGiven')) {
+                    SafeStorage.setItem('friendRewardGiven', 'true');
+                    
+                    // Premio speciale per entrambi - INDIPENDENTE dal limite giornaliero!
+                    setTimeout(() => {
+                        const friendCode = 'AMICI20_' + Date.now().toString().slice(-6);
+                        showModal('🎉', 'PREMIO AMICI SBLOCCATO!', 
+                            `<div style="text-align: center;">
+                                <div style="background: var(--emerald); color: white; padding: 25px; border-radius: 15px; margin: 20px 0;">
+                                    <h2 style="margin: 0 0 10px 0;">🤝 MISSIONE COMPIUTA!</h2>
+                                    <p style="margin: 0; font-size: 18px;">Entrambi avete giocato!</p>
+                                </div>
+                                
+                                <div style="background: var(--silk); padding: 20px; border-radius: 15px; margin: 20px 0;">
+                                    <h3 style="color: var(--midnight); margin-bottom: 15px;">🏆 Il VOSTRO premio EXTRA:</h3>
+                                    <div style="font-family: monospace; font-size: 24px; letter-spacing: 3px; color: var(--midnight); margin: 15px 0;">${friendCode}</div>
+                                    <p style="font-size: 16px; color: var(--midnight); font-weight: 600;">20% su OCCHIALI DA SOLE</p>
+                                    <p style="font-size: 12px; color: var(--steel);">Valido per 7 giorni • Solo Cesano Boscone</p>
+                                </div>
+                                
+                                <div style="background: linear-gradient(135deg, rgba(80, 200, 120, 0.1), rgba(80, 200, 120, 0.2)); padding: 15px; border-radius: 10px; margin: 20px 0; border-left: 4px solid var(--emerald);">
+                                    <p style="color: var(--midnight); font-size: 14px; margin: 0; font-weight: 600;">
+                                        ✨ <strong>BONUS SPECIALE:</strong> Questo premio è EXTRA!<br>
+                                        Anche se avevi già vinto oggi, questo è in più!
+                                    </p>
+                                </div>
+                                
+                                <p style="color: var(--steel); font-size: 14px; margin-bottom: 20px;">
+                                    💡 <strong>Anche il tuo amico ha ricevuto lo stesso codice!</strong><br>
+                                    Potete usarlo entrambi nel negozio
+                                </p>
+                                
+                                <a href="https://wa.me/390245862417?text=Ho%20vinto%20insieme%20a%20un%20amico%20il%20codice%20EXTRA%20${friendCode}%20per%20il%2020%25%20su%20occhiali%20da%20sole!" target="_blank" class="quick-btn" style="margin-top: 20px;" onclick="trackWhatsAppClick('friend_reward_winner')">💬 Prenota in Negozio</a>
+                            </div>`
+                        );
+                        
+                        trackEvent('friend_reward_unlocked', {
+                            category: 'conversion',
+                            label: 'friend_system_extra',
+                            referrer_id: referredBy,
+                            winner_id: myUserId,
+                            code: friendCode,
+                            is_extra_reward: true
+                        });
+                        
+                    }, 2000);
+                }
+            }
+        }
+
+        // Verifica se l'utente può ottenere il premio amici (indipendente dai giochi normali)
+        function canGetFriendReward() {
+            return !SafeStorage.getItem('friendRewardGiven');
+        }
+
+        // Sistema per chi invita - controlla se il suo amico ha giocato
+        function checkIfInviterShouldGetReward() {
+            // Controlla se questo utente ha invitato qualcuno che ha appena giocato
+            const myInvites = SafeStorage.getItem('myInvites');
+            if (myInvites) {
+                // Logica per verificare se gli invitati hanno giocato
+                // In un sistema reale, questo sarebbe gestito dal server
+                const inviteCount = parseInt(SafeStorage.getItem('inviteGameCount') || '0') + 1;
+                SafeStorage.setItem('inviteGameCount', inviteCount.toString());
+                
+                if (inviteCount >= 2 && !SafeStorage.getItem('inviterRewardGiven')) {
+                    SafeStorage.setItem('inviterRewardGiven', 'true');
+                    
+                    setTimeout(() => {
+                        const inviterCode = 'INVITE20_' + Date.now().toString().slice(-6);
+                        showModal('🎉', 'PREMIO INVITO SBLOCCATO!', 
+                            `<div style="text-align: center;">
+                                <div style="background: var(--champagne); color: white; padding: 25px; border-radius: 15px; margin: 20px 0;">
+                                    <h2 style="margin: 0 0 10px 0;">🎯 HAI PORTATO UN AMICO!</h2>
+                                    <p style="margin: 0; font-size: 18px;">Il tuo amico ha giocato!</p>
+                                </div>
+                                
+                                <div style="background: var(--silk); padding: 20px; border-radius: 15px; margin: 20px 0;">
+                                    <h3 style="color: var(--midnight); margin-bottom: 15px;">🏆 Il TUO premio INVITO:</h3>
+                                    <div style="font-family: monospace; font-size: 24px; letter-spacing: 3px; color: var(--midnight); margin: 15px 0;">${inviterCode}</div>
+                                    <p style="font-size: 16px; color: var(--midnight); font-weight: 600;">20% su OCCHIALI DA SOLE</p>
+                                    <p style="font-size: 12px; color: var(--steel);">Valido per 7 giorni • Solo Cesano Boscone</p>
+                                </div>
+                                
+                                <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2)); padding: 15px; border-radius: 10px; margin: 20px 0; border-left: 4px solid var(--champagne);">
+                                    <p style="color: var(--midnight); font-size: 14px; margin: 0; font-weight: 600;">
+                                        🌟 <strong>GRAZIE per aver invitato un amico!</strong><br>
+                                        Questo è il tuo premio extra per essere un ambassador S&V!
+                                    </p>
+                                </div>
+                                
+                                <a href="https://wa.me/390245862417?text=Ho%20portato%20un%20amico%20e%20ho%20vinto%20il%20codice%20INVITO%20${inviterCode}%20per%20il%2020%25%20su%20occhiali%20da%20sole!" target="_blank" class="quick-btn" style="margin-top: 20px;" onclick="trackWhatsAppClick('inviter_reward_winner')">💬 Prenota in Negozio</a>
+                            </div>`
+                        );
+                        
+                        trackEvent('inviter_reward_unlocked', {
+                            category: 'conversion',
+                            label: 'inviter_bonus',
+                            inviter_id: myUserId,
+                            code: inviterCode
+                        });
+                        
+                    }, 3000);
+                }
+            }
+        }
         let qrCode = null;
         const APP_URL = window.location.origin + window.location.pathname;
         
@@ -3969,10 +4422,16 @@
             // Initialize privacy
             initPrivacy();
             
-            // Check URL parameters for QR tracking
+            // Check URL parameters for QR tracking and friend referrals
             const urlParams = new URLSearchParams(window.location.search);
             const gameParam = urlParams.get('game');
             const refParam = urlParams.get('ref');
+            const friendParam = urlParams.get('friend');
+            
+            // Check for friend referral first
+            if (friendParam) {
+                checkForReferral();
+            }
             
             if (refParam === 'qr') {
                 setTimeout(() => {
@@ -3980,11 +4439,17 @@
                     Logger.log('QR Code scansionato');
                     
                     if (gameParam === 'wheel') {
-                        navigateTo('fortune');
+                        navigateTo('giochi');
                         showModal('🎮', 'Benvenuto al gioco!', 
                             'Gira la ruota e prova a vincere sconti esclusivi!<br><br>' +
                             '<button class="quick-btn" onclick="closeModal()" style="margin-top: 15px;">Inizia a giocare! 🎯</button>');
                     }
+                }, 1000);
+            } else if (refParam === 'friendqr') {
+                setTimeout(() => {
+                    trackQRScan();
+                    Logger.log('Friend QR scansionato');
+                    navigateTo('giochi');
                 }, 1000);
             }
             
@@ -4008,4 +4473,4 @@
 
     </script>
 </body>
-    </html>
+                            </html>
